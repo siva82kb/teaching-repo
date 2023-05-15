@@ -1,0 +1,3 @@
+Latexmk: Run number 1 of rule 'pdflatex'
+Latexmk: Summary of warnings from last run of (pdf)latex:
+  Latex failed to resolve 1 reference(s)

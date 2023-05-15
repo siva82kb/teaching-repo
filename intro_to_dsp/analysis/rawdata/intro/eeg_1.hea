@@ -1,0 +1,11 @@
+eeg_1 10 2048 1106064
+eeg_1.dat 16 1000/mV 16 0 3349 21358 0 EEG1
+eeg_1.dat 16 1000/mV 16 0 3285 22946 0 EEG2
+eeg_1.dat 16 1000/nd 16 0 650 11680 0 EEG_tr
+eeg_1.dat 16 1000/nd 16 0 -6250 9669 0 ACC_x1
+eeg_1.dat 16 1000/nd 16 0 488 685 0 ACC_y1
+eeg_1.dat 16 1000/nd 16 0 -1758 -8726 0 ACC_z1
+eeg_1.dat 16 1000/nd 16 0 -732 24248 0 ACC_x2
+eeg_1.dat 16 1000/nd 16 0 5664 6201 0 ACC_y2
+eeg_1.dat 16 1000/nd 16 0 6396 -24815 0 ACC_z2
+eeg_1.dat 16 1000/nd 16 0 674 -23330 0 ACC_tr

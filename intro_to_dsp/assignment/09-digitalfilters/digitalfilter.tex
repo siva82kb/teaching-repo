@@ -1,0 +1,113 @@
+\documentclass[9pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=15mm,
+    right=15mm,
+    top=20mm,
+    bottom=20mm,
+}
+\usepackage{multicol}
+\usepackage[font=small,labelfont=bf]{caption}
+\setlength{\columnsep}{0.25cm}
+\usepackage[inline]{enumitem}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{mathtools} 
+\setlength{\parindent}{0em}
+\setlength{\parsep}{0em}
+\usepackage{tikz}
+\setlength{\parskip}{0em}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usepackage[american,cuteinductors]{circuitikz}
+\usetikzlibrary{shapes,arrows,circuits,calc,babel}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\def\mf{\ensuremath\mathbf}
+\def\mb{\ensuremath\mathbb}
+\def\mc{\ensuremath\mathcal}
+\def\lp{\ensuremath\left(}
+\def\rp{\ensuremath\right)}
+\def\lv{\ensuremath\left\lvert}
+\def\rv{\ensuremath\right\rvert}
+\def\lV{\ensuremath\left\lVert}
+\def\rV{\ensuremath\right\rVert}
+\def\lc{\ensuremath\left\{}
+\def\rc{\ensuremath\right\}}
+\def\ls{\ensuremath\left[}
+\def\rs{\ensuremath\right]}
+\def\bmx{\ensuremath\begin{bmatrix*}[r]}
+\def\emx{\ensuremath\end{bmatrix*}}
+\def\bmxc{\ensuremath\begin{bmatrix*}[c]}
+\def\emxc{\ensuremath\end{bmatrix*}}
+% \def\t{\lp t\rp}
+% \def\k{\ls k\rs}
+
+\newcommand{\demoex}[2]{\onslide<#1->\begin{color}{black!60} #2 \end{color}}
+\newcommand{\demoexc}[3]{\onslide<#1->\begin{color}{#2} #3 \end{color}}
+\newcommand{\anim}[3]{\onslide<#1->{\begin{color}{#2!60} #3 \end{color}}}
+\newcommand{\ct}[1]{\lp #1\rp}
+\newcommand{\dt}[1]{\ls #1\rs}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{center}
+    \begin{Large}
+        \textbf{Introduction to DSP: Systems - Assignment: Digital Filters}
+    \end{Large}
+\end{center}
+\vspace{0.2cm}
+
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item \textbf{All pass filter}. Show that a filter of the following transfer function has a cosntant magnitude response for all frequencies.
+        \[ H\lp z \rp = \frac{z^{-1} + p}{1 - pz^{-1}}, \,\,\, p \in \mb{R} \]
+
+        Write python program to the plot the mangitude and phase response of this filter.
+        
+        \item Consider a bandlimited the time domain signal $x_c(t)$ that is sampled satisfying the Nyquist criterion. 
+        \[  x_d[n] = x_c(n\cdot T_s), \,\,\, T_s \text{ is the sampling time} \]
+
+        Write down the frequency response of a filter $H$ that delays an input signal $x_d[n]$ by 2 samples, such that
+        \[ y[n] = H\{ x_d[n] \} = x_d[n - 2] = x_c(n\cdot T_s - 2\cdot T_s) \]
+
+        Find the impulse response of this filter using the inverse DTFT formula.
+
+        It is possible to design a filter $\hat{H}$ that delays the input signal by a fraction of a sample, i.e
+        \[ \hat{y}[n] = \hat{H}\{ x_d[n] \} = x_c(n\cdot T_s - 0.5 \cdot T_s) \]
+
+        Write down the frequenct response of such a filter, and derive it impulse response.
+
+        \item \textbf{Notch filter}. A notch filter is filter that selectively remove on more frequency components in the incoming singal. These filters have a magnitude response of $0$ at specific frequencies.
+
+        In a system of interest, continous-time signal are sampled at 500 Hz, and are processed using a computer. The incoming data is corrupted by the 50Hz power line interfernce. We are interest in designing a simple FIR filter for removing the 50Hz interference. We can accomplish this using the following filter,
+        \[ H(z) = 1 - 2\cos\lp \Omega \rp z^{-1} + z^{-2} \]
+
+        Where are the poles and zeros of this transfer function? Choose the value of $\Omega$ such that the digital filter $\lvert H\lp \Omega \rp = 0$, such that 50Hz interference in the sampled data is removed.
+
+        Write a python program to plot the magnitude and phase response of this filter as a function of real frequency.
+
+        You will find that this filter introduces signifiant attenuation to the frequencies around 50Hz. One approach to address this issue is to develop a FIR filter using the frequency sampling method, by defining a desired frequency response for a set $N$ discrete frequencies, obtain the impulse response for such a filter. Write a python program to design a FIR notch filter of length $N=100$ to remove the 50Hz powerline interference.
+
+        Plot the magnitude and phase response of this filter as a function of real frequency.
+
+    \end{enumerate}
+    \vfill
+\end{multicols}
+
+\end{document}

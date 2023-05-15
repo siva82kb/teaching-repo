@@ -1,0 +1,1044 @@
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\documentclass[aspectratio=169]{beamer}
+%\documentclass{beamer}
+
+\setbeamersize{text margin left=2mm, text margin right=2mm}
+
+\defbeamertemplate{headline}{my header}{%
+\vskip1pt%
+\makebox[0pt][l]{\,\insertshortauthor}%
+\hspace*{\fill}\insertshorttitle/\insertshortsubtitle\hspace*{\fill}%
+\llap{\insertpagenumber/\insertpresentationendpage\,}
+}
+\setbeamertemplate{headline}[my header]
+
+\usepackage{soul}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usepackage[]{algorithm2e}
+\usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{mathtools}
+%\usetikzlibrary{arrows.meta}
+
+%\setbeamertemplate{itemize items}{-}
+
+%\usepackage{helvet}
+\usefonttheme{professionalfonts} % using non standard fonts for beamer
+%\usefonttheme{serif} % default family is serif
+%\usepackage{fontspec}
+%\setmainfont{Liberation Serif}
+
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+
+
+\title{Linear Control and Estimation}
+
+% A subtitle is optional and this may be deleted
+\subtitle{Matrices}
+
+\author{Sivakumar Balasubramanian}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Christian Medical College] % (optional, but mostly needed)
+{
+  \inst{}%
+  Department of Bioengineering\\
+  Christian Medical College, Bagayam\\
+  Vellore 632002
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date{}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+\subject{Lecture notes on linear control and estimation}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% Let's get started
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}[t]{References}
+\begin{itemize}
+\item S Boyd, Applied Linear Algebra: Chapters 2, 6, 7, 8, 10 and 11.
+\item G Strang, Linear Algebra: Chapters 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Linear Functions}
+\begin{itemize}
+\item Let $f$ be a function which maps real $n$-vectors to scalar real numbers. It can be represented as the following,
+$$f: \mathbb{R}^n \longrightarrow \mathbb{R}; \,\,\,\, y = f(x) = f\left(x_1, x_2, x_3, \ldots x_n\right)$$
+\item Criteria for $f$ to be a linear function: \textbf{Superposition}: $f\left(\alpha x + \beta y\right) = \alpha f\left(x\right) + \beta f\left(y\right)$, where $\alpha, \beta \in \mathbb{R}$ and $x, y \in \mathbb{R}^n$.
+\item Can you think of an linear function that we had encountered in the previous lecture on vectors?
+\item \textbf{Inner product} is a linear function in one of the arguments. $$f\left(x\right) = w^Tx = w_1x_1 + w_2x_2 + w_3x_3 + \ldots + w_nx_n$$
+\item Any linear function can be represented in the form $f\left(x\right) = w^Tx$ with an appropriately chosen $w$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrices}
+\begin{itemize}
+\item \textbf{Matrices} are rectangular array of numbers. $\begin{bmatrix}
+1.1 & -24 & \sqrt{2} \\
+0 & 1.12 & -5.24 \\
+\end{bmatrix}$
+%\vspace{0.15cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+\draw[thick, ->] (0,0) -- (0, -4.3) node[midway,left] {$n$ rows};
+\draw[thick, ->] (0.5,0.5) -- (6.1, 0.5) node[midway,above]{$m$ columns};
+%\node[xshift=-0.6cm,yshift=-1.3cm] {Rows};
+\node[gray,xshift=2.0cm,yshift=-1.3cm] {$\begin{bmatrix}
+\Box & \Box & \Box & \ldots & \Box \\
+\Box & \Box & \Box & \ldots & \Box \\
+\Box & \textcolor{black}{a_{32}} & \Box & \ldots & \Box \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+\Box & \Box & \Box & \ldots & \Box \\
+\end{bmatrix}$};
+\draw[draw=red] (0.5,-2.35) rectangle ++(5.6,0.8);
+\draw[draw=blue] (1.6,-4.25) rectangle ++(1.0,4.25);
+\draw [thick, blue, ->] (2.15,-4.4) to [out=-90,in=180] (3.0, -5.0) node[right] {\small{$2^{nd}$ column}};
+\draw [thick, red, ->] (6.2,-1.95) to (7.,-1.95) node[right] {\small{$3^{rd}$ row}};
+\end{tikzpicture}\hspace{0.5cm}
+\end{center}
+\item Consider a matrix $A$ with $n$ rows and $m$ columns.$ \begin{cases} \text{\textbf{Tall/Skinny}} & n > m\\
+\text{\textbf{Square}} & n = m\\
+\text{\textbf{Wide/Fat}} & n < m\\
+\end{cases}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrices}
+\begin{itemize}
+\item $n$-vectors can be interpreted as $n \times 1$ matrices. These are called \textit{column vectors}.
+\item A matrix with only one row is called a \textit{row vector}, which can be referred to as $n$-row-vector.  $x = \begin{bmatrix}1.45 & -3.1 & 12.4\end{bmatrix}$
+\item\textbf{Block matrices} \& \textbf{Submatrices}: $A = \begin{bmatrix}
+B & C \\
+D & E
+\end{bmatrix}$.  What are the dimensions of the different matrices?
+\item Matrices are also compact way to give a set of indexed column $n$-vectors, 
+$x_1, x_2, x_3 \ldots x_m$. 
+$$X = \begin{bmatrix}
+x_1 & x_2 & x_3 & \ldots & x_m
+\end{bmatrix}$$
+\item \textbf{Zero matrix}$ = 0_{n\times m} = \begin{bmatrix}
+0 & 0 & \ldots & 0\\
+0 & 0 & \ldots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \ldots & 0
+\end{bmatrix}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrices}
+\begin{itemize}
+\item \textbf{Identity matrix} is a square $n \times n$ matrix with all zero elements, except the diagonals where all elements are 1.
+$$I_{ij} = \begin{cases}
+1 & i = j\\
+0 & i \neq j
+\end{cases} \,\,\,\,\,\,\,\, I_3=\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+\end{bmatrix} = \begin{bmatrix}
+e_1 & e_2 & e_3
+\end{bmatrix}$$
+\item \textbf{Diagonal matrices} is a square matrix with non-zero elements on its diagonal.
+$$\begin{bmatrix}
+0.4 & 0 & 0 & 0\\
+0 & -11 & 0 & 0\\
+0 & 0 & 21 & 0\\
+0 & 0 & 0 & 9.3\\
+\end{bmatrix} = \text{\textbf{diag}}\left(0.4, -11, 21, 9.3\right)$$
+\item \textbf{Triangular matrices}: Are square matrices. \textit{Upper triangular} $A_{ij} = 0, \forall i > j$; \textit{Lower triangular} $A_{ij} = 0, \forall i < j$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrix operations}
+\begin{itemize}
+\item \textbf{Transpose} switches the rows and columns of a matrix. $A$ is a $n\times m$ matrix, then its transpose is represented by $A^T$, which is a $m \times n$ matrix.
+\[ A = \begin{bmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+\end{bmatrix} \implies A^T = \begin{bmatrix}
+a_{11} & a_{21}\\
+a_{12} & a_{22}\\
+a_{13} & a_{23}\\
+\end{bmatrix} \]
+Transpose converts between column and row vectors.\\
+What is the transpose of a block matrix? $A = \begin{bmatrix}
+B & C\\D & E
+\end{bmatrix}$
+\item \textbf{Matrix addition} can only be carried out with matrices of same size. Like vectors we perform element wise addition.
+\[ \begin{bmatrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}\\
+\end{bmatrix} + \begin{bmatrix}
+b_{11} & b_{12}\\
+b_{21} & b_{22}\\
+\end{bmatrix} = \begin{bmatrix}
+a_{11} + b_{11} & a_{12} + b_{12}\\
+a_{21} + b_{21} & a_{22} + b_{22}\\
+\end{bmatrix}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrix operations}
+\begin{itemize}
+\item \textbf{Properties of matrix addition}:
+\begin{itemize}
+\item \textit{Commutative}: $A + B = B + A$
+\item \textit{Associative}: $\left(A + B\right) + C = A + \left(B + C\right)$
+\item \textit{Addition with zero matrix}: $A + 0 = 0 + A$
+\item \textit{Transpose of sum}: $\left(A + B\right)^T = A^T + B^T$
+\end{itemize}
+\item \textbf{Scalar multiplication} Each element of the matrix gets multiplied by the scalar.
+\[ \alpha \begin{bmatrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}\\
+\end{bmatrix} = \begin{bmatrix}
+\alpha a_{11} & \alpha a_{12} \\
+\alpha a_{21} & \alpha a_{22} \\
+\end{bmatrix}\]
+\item We will mostly only deal with matrices with real entries. Such matrices are elements of the set $\mathbb{R}^{n\times m}$.
+\item Given the aforementioned matrix operations and their properties, is $\mathbb{R}^{n\times m}$ a vector space?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrix multiplication}
+\begin{itemize}
+\item It is possible to \textit{multiply} two matrices $A \in \mathbb{R}^{n\times p}$ and $B \in \mathbb{R}^{p\times m}$ through \textit{matrix multiplication} procedure.
+\item There is a product matrix $C \coloneqq AB \in \mathbb{R}^{n \times m}$, if the number of columns of $A$ is equal to the number of rows of $B$.
+\[ C_{ij} \coloneqq \sum_{k=1}^{p} A_{ik}B_{kj} \,\,\,\,\, \forall i \in \left\{1, \ldots n\right\} \,\,\, \& \,\,\, j \in \left\{1 \ldots m\right\} \]
+\item \textit{Inner product} is a special case of matrix multiplication between a \textit{row vector} and a \textit{column vector}.
+\[ x^Ty = \begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\x_n
+\end{bmatrix}^T\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\y_n
+\end{bmatrix} = \begin{bmatrix}
+x_1 & x_2 & \ldots &x_n
+\end{bmatrix}\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\y_n
+\end{bmatrix} = \sum_{i=1}^nx_iy_i\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrix multiplication}
+\begin{itemize}
+\item Consider a matrix $A \in \mathbb{R}^{n \times m}$ and a $m$-vector $x \in \mathbb{R}^m$. We can multiply $A$ and $x$ to obtain $y = Ax \in \mathbb{R}^n$.
+\[ y = \begin{bmatrix}
+a_{11} & a_{12} & \ldots & a_{1m} \\
+a_{21} & a_{22} & \ldots & a_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \ldots & a_{nm} \\
+\end{bmatrix}\begin{bmatrix}
+x_1\\ x_2 \\ \vdots \\ x_{m}
+\end{bmatrix} = \begin{bmatrix}
+\tilde{a}_1^T\\ \tilde{a}_2^T \\ \vdots \\ \tilde{a}_n^T
+\end{bmatrix}x = \begin{bmatrix}
+\tilde{a}_{*1}^Tx\\ \tilde{a}_2^Tx \\ \vdots \\ \tilde{a}_n^Tx
+\end{bmatrix} = \begin{bmatrix}
+\sum_{i=1}^ma_{1i}x_i\\ \sum_{i=1}^ma_{2i}x_i \\ \vdots \\ \sum_{i=1}^ma_{ni}x_i
+\end{bmatrix} \]
+\[ y = \sum_{i=1}^mx_i\begin{bmatrix}
+a_{1i} \\ a_{2i} \\ \vdots \\ a_{ni}
+\end{bmatrix} = x_1\begin{bmatrix}
+a_{11} \\ a_{21} \\ \vdots \\ a_{n1}
+\end{bmatrix} + x_2 \begin{bmatrix}
+a_{12} \\ a_{22} \\ \vdots \\ a_{n2}
+\end{bmatrix} + \ldots + x_m \begin{bmatrix}
+a_{1m} \\ a_{2m} \\ \vdots \\ a_{nm}
+\end{bmatrix} \]
+\item Multiplying a matrix $A$ by a column vector $x$ produces a linear combination of the columns of matrix $A$. The column mixture is provided by $x$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrix multiplication}
+\begin{itemize}
+\item We see a similar process in play when we multiply a row vector $x^T \in \mathbb{R}^{n}$ by a matrix $A \in \mathbb{R}^{n \times m}$.
+\[ y = x^TA = \begin{bmatrix}
+x_1\\ x_2 \\ \vdots \\ x_n
+\end{bmatrix}^T\begin{bmatrix}
+a_{11} & a_{12} & \ldots & a_{1m} \\
+a_{21} & a_{22} & \ldots & a_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \ldots & a_{nm} \\
+\end{bmatrix} = x^T\begin{bmatrix}
+a_1 & a_2 & \ldots & a_m
+\end{bmatrix} \]
+\[ y = = \begin{bmatrix}
+x^Ta_1 & x^Ta_2 & \ldots & x^Ta_m\end{bmatrix} = \sum_{i=1}^{n}x_i\begin{bmatrix}
+a_{i1} & a_{i2} & \ldots & a_{im}\end{bmatrix} \]
+\item Multiplying a row vector $x$ by a matrix $A$ produces a linear combination of the row of matrix $A$. The row mixture is provided by $x$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrix multiplication}
+\begin{itemize}
+\item Multiplying two matrices $A \in \mathbb{R}^{n \times p}$ and $B \in \mathbb{R}^{p \times m}$, we have $C \in \mathbb{R}^{n \times m}$,
+\[ C = AB = \begin{bmatrix}
+a_{11} & a_{12} & \ldots & a_{1p} \\
+a_{21} & a_{22} & \ldots & a_{2p} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \ldots & a_{np} \\
+\end{bmatrix} \begin{bmatrix}
+b_{11} & b_{12} & \ldots & b_{1m} \\
+b_{21} & b_{22} & \ldots & b_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+b_{p1} & b_{p2} & \ldots & b_{pm} \\
+\end{bmatrix} = \begin{bmatrix}
+c_{11} & c_{12} & \ldots & c_{1m} \\
+c_{21} & c_{22} & \ldots & c_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+c_{p1} & c_{n2} & \ldots & c_{nm} \\
+\end{bmatrix}\]
+\item \textbf{Inner product interpretation}: $c_{ij} = \tilde{a}_i^Tb_j, \, i \in \left\{1 \ldots n\right\}, j \in \left\{1 \ldots m\right\}$
+\item \textbf{Column interpretation}: $C = A \begin{bmatrix}
+b_{1} & b_{2} & \ldots & b_{m}
+\end{bmatrix} = \begin{bmatrix}
+Ab_{1} & Ab_{2} & \ldots & Ab_{m}
+\end{bmatrix}$
+\item \textbf{Row interpretation} : $C = \begin{bmatrix}
+\tilde{a}_{1}^T\\
+\tilde{a}_{2}^T\\
+\vdots\\
+\tilde{a}_{n}^T\\
+\end{bmatrix} B = \begin{bmatrix}
+\tilde{a}_{1}^TB\\
+\tilde{a}_{2}^TB\\
+\vdots\\
+\tilde{a}_{n}^TB\\
+\end{bmatrix}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Matrix multiplication}
+\begin{itemize}
+\item \textbf{Outer product interpretation} Consider two $n$-vectors $x, y \in \mathbb{R}^n$. The \textit{outer product} is defined as,
+\[ xy^T = \begin{bmatrix}
+x_1\\ x_2\\ x_3\\ \vdots \\x_n
+\end{bmatrix} \begin{bmatrix}
+y_1 &  y_2 & y_3 & \ldots & y_n
+\end{bmatrix} = \begin{bmatrix}
+x_1y_1 &  x_1y_2 & x_1y_3 & \ldots & x_1y_n \\
+x_2y_1 &  x_2y_2 & x_2y_3 & \ldots & x_2y_n \\
+x_3y_1 &  x_3y_2 & x_3y_3 & \ldots & x_3y_n \\
+\vdots &  \vdots & \vdots & \ddots & \vdots \\
+x_ny_1 &  x_ny_2 & x_ny_3 & \ldots & x_ny_n \\
+\end{bmatrix} \]
+\item We can represent the product between two matrices as the sum of outer products between the columns and $A$ and rows of $B$. 
+\[ AB = \begin{bmatrix}
+a_1 & a_2 & a_3 & \ldots & a_p
+\end{bmatrix} \begin{bmatrix}
+\tilde{b}_1^T \\
+\tilde{b}_2^T \\
+\tilde{b}_3^T \\
+\vdots \\
+\tilde{b}_p^T
+\end{bmatrix} = \sum_{i=1}^{p}a_i\tilde{b}_i^T \]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Properties of matrix multiplication}
+\begin{itemize}
+\item \textbf{Not commutative}: $AB \neq BA$\\
+The two product might not even be defined always. When it is these two products need not match.
+\item \textbf{Distributive}:  $A\left(B + C\right) = AB + BC$ and $\left(A + B\right)C = AC + BC$ 
+\item \textbf{Associative}: $A\left(BC\right) = \left(AB\right)C $
+\item \textbf{Transpose}: $\left(AB\right)^T = B^TA^T$
+\item \textbf{Scalar product}: $\alpha\left(AB\right) = \left(\alpha A\right)B = A\left(\alpha B\right)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Linear equations}
+\begin{itemize}
+\item Matrices present a compact way to represent a set of linear equations. Consider the following,
+\[
+\begin{rcases*}
+\begin{split}
+a_{11}x_1 + a_{12}x_2 \ldots + a_{1m}x_m & = b_1 \\
+a_{21}x_1 + a_{22}x_2 \ldots + a_{2m}x_m & = b_2 \\
+a_{31}x_1 + a_{32}x_2 \ldots + a_{3m}x_m & = b_3 \\
+\vdots \\
+a_{n1}x_1 + a_{n2}x_2 \ldots + a_{nm}x_m & = b_n \\
+\end{split}
+\end{rcases*} \, \longrightarrow Ax = b, \,\,\, A \in \mathbb{R}^{n\times m}, \,\, b \in \mathbb{R}^n
+\]
+
+\[
+A = \begin{bmatrix}
+a_{11} & a_{12} & a_{13} & \ldots & a_{1m}\\
+a_{21} & a_{22} & a_{23} & \ldots & a_{2m}\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & a_{n3} & \ldots & a_{nm}\\
+\end{bmatrix} \,\,\,\,\, 
+x = \begin{bmatrix}
+x_1\\ x_2\\ \vdots \\ x_m
+\end{bmatrix} \,\,\,\,\,
+b = \begin{bmatrix}
+b_1\\ b_2\\ \vdots \\ b_n
+\end{bmatrix}
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Geometry of linear equations}
+\vspace{-0.5cm}
+\[\begin{rcases*}
+\begin{split} x_1 + 2x_2 &= -1 \\ x_1 + x_2 &= 1 \end{split}
+\end{rcases*} \longrightarrow \begin{bmatrix}
+1 & 2\\
+1 & 1
+\end{bmatrix}\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix} = \begin{bmatrix}
+-1\\
+1
+\end{bmatrix}\]
+Two ways to view this: \textbf{row view} and the \textbf{column view}.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+\node[yshift=2.4cm] {\textbf{Traditional (row) view}};
+\draw[gray,<->] (-4, 0) -- (4, 0) node[right,below] {$x1$};
+\draw[gray,<->] (0, -4) -- (0, 4) node[right] {$x2$};
+\draw[blue,thick] (-4,3/2) -- (4, -5/2) node[midway,left,yshift=-0.25cm] {$x_1 + 2x_2 = -1$};
+\draw[red,thick] (-3,4) -- (4, -3) node[midway,right,yshift=0.25cm] {$x_1 + x_2 = 1$};
+\draw (3,-2) node[] {$\bullet$};
+\draw (3,-2) node[right,yshift=0.25cm] {$\left(3,-2\right)$};
+\end{tikzpicture}\hspace{1cm}
+\begin{tikzpicture}[scale=0.5]
+\node[yshift=2.4cm] {\textbf{Column view}};
+\draw[gray,<->] (-4, 0) -- (4, 0) node[right,below] {$x1$};
+\draw[gray,<->] (0, -4) -- (0, 4) node[right] {$x2$};
+\draw[gray,thin,->] (0,0) -- (3,3) node[above,right] {$3a_1$};
+\draw[blue,thick,->] (0,0) -- (1,1) node[above,yshift=0.cm] {\small{$a_1$}};
+\draw[red,thick,->] (0,0) -- (2,1) node[above,xshift=0.1cm,yshift=0.cm] {\small{$a_2$}};
+\draw[gray,thin,->] (0,0) -- (-4,-2) node[below,left] {$-2a_2$};
+\draw[gray,thin,dashed] (3,3) -- (-1,1);
+\draw[gray,thin,dashed] (-4,-2) -- (-1,1);
+\draw[black,thick,->] (0,0) -- (-1,1) node[above,left] {\small{$b$}};
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{Solving linear equations}
+\vspace{-0.5cm}
+$$ Ax = b, \,\,\, A \in \mathbb{R}^{n\times m}, \,\, b \in \mathbb{R}^n$$
+\vspace{-0.5cm}
+\begin{itemize}
+\item \textbf{Three possible situations:} \textsc{No solution}, \textsc{Infinitely many solutions}, or \textsc{Unique Solution}.
+\item When do have infinitely many or no solutions? In $\mathbb{R}^3$, we can visualize the different situations.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+\node[yshift=1.5cm] {\small{Two parallel planes}};
+\draw[black,-] (-2, -2) -- (2, 2);
+\draw[black,-] (-3, -2) -- (1, 2);
+\draw[black,-] (2, -2) -- (-2, 2);
+\end{tikzpicture}\hspace{0.25cm}
+\begin{tikzpicture}[scale=0.5]
+\node[yshift=1.5cm] {\small{Three parallel planes}};
+\draw[black,-] (-2, -2) -- (2, 2);
+\draw[black,-] (-3, -2) -- (1, 2);
+\draw[black,-] (-1, -2) -- (3, 2);
+\end{tikzpicture}\hspace{0.25cm}
+\begin{tikzpicture}[scale=0.5]
+\node[yshift=1.0cm] {\small{No intersection}};
+\draw[black,-] (-3, -2) -- (3, -2);
+\draw[black,-] (-3, -3) -- (0, 1);
+\draw[black,-] (3, -3) -- (-1, 1);
+\end{tikzpicture}\hspace{0.25cm}
+\begin{tikzpicture}[scale=0.5]
+\node[yshift=1.5cm] {\small{Line intersection}};
+\draw[black,-] (-2, 0) -- (2, 0);
+\draw[black,-] (-2, -2) -- (2, 2);
+\draw[black,-] (2, -2) -- (-2, 2);
+\end{tikzpicture}
+\end{center} 
+\end{frame}
+
+\begin{frame}[t]{Solving linear equations: Gaussian Elimination}
+\vspace{-0.5cm}
+\begin{small}
+\[
+\begin{split}
+a_{11}x_1 + a_{12}x_2 \ldots + a_{1m}x_m & = b_1 : E_1\\
+a_{21}x_1 + a_{22}x_2 \ldots + a_{2m}x_m & = b_2 : E_2\\
+a_{31}x_1 + a_{32}x_2 \ldots + a_{3m}x_m & = b_3 : E_3\\
+\vdots &  \\
+a_{n1}x_1 + a_{n2}x_2 \ldots + a_{nm}x_m & = b_n : E_n\\
+\end{split}
+\]
+\end{small}
+\vspace{-0.5cm}
+
+\begin{itemize}
+\item Gaussian elimination is a systematic way of simplifying the above equations to an equivalent system that can be easily solved.  
+\item Three simple operations are repeatedly performed:
+\begin{itemize}
+\item Interchanging of equations $E_i$ and $E_j$.
+\item Replacing equation $E_i$ by $\alpha E_i$, $\alpha \neq 0$.
+\item Replacing equation $E_j$ by $E_j + \alpha E_i$, $\alpha \neq 0$.
+\end{itemize}
+\item These three operations do not change the solution of the given linear system.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Solving linear equations: Gaussian Elimination}
+\begin{center}
+\textbf{Augmented matrix}: $\left[
+\begin{array}{cccc|c}
+a_{11} & a_{12} & \cdots & a_{1m} & b_1 \\
+a_{21} & a_{22} & \cdots & a_{2m} & b_2 \\
+a_{31} & a_{32} & \cdots & a_{3m} & b_3 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nm} & b_n \\
+\end{array}
+\right]$
+\vspace{0.5cm}
+\begin{itemize}
+\item We can work with the augmented matrix instead of the equations.
+\item Gaussian elimination is carried out on the entire matrix.
+\item The matrix is simplified to a point, from where one can easily:
+\begin{itemize}
+\item find out the nature of the solutions for the system of equations; and
+\item find the solution (with a bit of extra work), if they exist.
+\end{itemize}
+\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{Solving linear equations: Gaussian Elimination}
+\begin{small}
+\[
+\begin{rcases*}
+\begin{array}{rrrrrrr}
+x_1 &+& 2x_2 &-& x_3 & =& 1 \\
+2x_1 &+& 3x_2 &+& 4x_3  & =& 4 \\
+-2x_1 &-& 4x_2 &+& x_3  & =& -3 \\
+\end{array}
+\end{rcases*} \, \longrightarrow \left[
+\begin{array}{rrr|r}
+1& 2 & -1 & 1 \\
+2 & 3 & 4 & 4 \\
+-2 & -4 & 1 & -3 \\
+\end{array}
+\right]
+\]
+\end{small}
+
+\noindent \textbf{Gaussian Elimination}
+\begin{small}
+\[
+\left[
+\begin{array}{rrr|r}
+\color{red}{\underline{1}} & 2 & -1 & 1 \\
+2 & 3 & 4 & 4 \\
+-2 & -4 & 1 & -3 \\
+\end{array}
+\right] \longrightarrow
+\left[
+\begin{array}{rrr|r}
+\color{red}{\underline{1}} & 2 & -1 & 1 \\
+0 & -1 & 6 & 2 \\
+-2 & -4 & 1 & -3 \\
+\end{array}
+\right] \longrightarrow
+\left[
+\begin{array}{rrr|r}
+\color{red}{\underline{1}} & 2 & -1 & 1 \\
+0 & \color{red}{\underline{-1}} & 6 & 2 \\
+0 & 0 & \color{red}{\underline{-1}} & -1 \\
+\end{array}
+\right]
+\]
+\end{small}
+
+\noindent Now, we can perform \textbf{back substitution} on this triangularized system of linear equations,
+\[ x_3 = 1; \,\,\, x_2 = 4; \,\,\, x_1 = -6 \]
+
+We can continue the simplification process through the \textbf{Gauss-Jordan} method.
+\end{frame}
+
+\begin{frame}[t]{Solving linear equations: Gaussian-Jordan Method}
+\noindent Continue the elimination upwards until all elements, except the ones in the main diagonal, are zero.
+\begin{small}
+\[
+\left[
+\begin{array}{rrr|r}
+1 & 2 & -1 & 1 \\
+0 & -1 & 6 & 2 \\
+0 & 0 & -1 & -1 \\
+\end{array}
+\right] \longrightarrow
+\left[
+\begin{array}{rrr|r}
+1 & 2 & -1 & 1 \\
+0 & -1 & 0 & -4 \\
+0 & 0 & 1 & 1 \\
+\end{array}
+\right] \longrightarrow
+\left[
+\begin{array}{rrr|r}
+1 & 2 & -1 & 1 \\
+0 & 1 & 0 & 4 \\
+0 & 0 & 1 & 1 \\
+\end{array}
+\right] \longrightarrow
+\left[
+\begin{array}{rrr|r}
+1 & 2 & 0 & 2 \\
+0 & 1 & 0 & 4 \\
+0 & 0 & 1 & 1 \\
+\end{array}
+\right]
+\]
+\[
+\left[
+\begin{array}{rrr|r}
+1 & 2 & 0 & 2 \\
+0 & 1 & 0 & 4 \\
+0 & 0 & 1 & 1 \\
+\end{array}
+\right] \longrightarrow
+\left[
+\begin{array}{rrr|r}
+1 & 0 & 0 & -6 \\
+0 & 1 & 0 & 4 \\
+0 & 0 & 1 & 1 \\
+\end{array}
+\right] \implies x_1 = -6; \,\,\, x_2 = 4; \,\,\, x_3 = 1; 
+\]
+\end{small}
+
+\noindent Everything worked out well without any problems. What can go wrong here?
+\vspace{0.25cm}
+
+Try solving the these systems, $\left[\begin{array}{rrr|r}
+1 & 2 & -1 & 1 \\
+2 & 3 & 4 & 4 \\
+-2 & -4 & 2 & -3 \\
+\end{array}\right]
+$, $\left[\begin{array}{rrr|r}
+1 & 2 & -1 & 1 \\
+2 & 3 & 4 & 4 \\
+-2 & -4 & 2 & -2 \\
+\end{array}\right]
+$
+\vspace{0.25cm}
+
+What is the difference between these two systems?
+\end{frame}
+
+\begin{frame}[t]{Solving linear equations: Rectangular systems and Echelon forms}
+\vspace{-0.75cm}
+\begin{small}
+\[
+\begin{split}
+a_{11}x_1 + a_{12}x_2 \ldots + a_{1m}x_m & = b_1 : E_1\\
+a_{21}x_1 + a_{22}x_2 \ldots + a_{2m}x_m & = b_2 : E_2\\
+a_{31}x_1 + a_{32}x_2 \ldots + a_{3m}x_m & = b_3 : E_3\\
+\vdots &  \\
+a_{n1}x_1 + a_{n2}x_2 \ldots + a_{nm}x_m & = b_n : E_n\\
+\end{split} \longrightarrow
+\left[
+\begin{array}{cccc|c}
+a_{11} & a_{12} & \cdots & a_{1m} & b_1 \\
+a_{21} & a_{22} & \cdots & a_{2m} & b_2 \\
+a_{31} & a_{32} & \cdots & a_{3m} & b_3 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nm} & b_n \\
+\end{array}
+\right]
+\]
+
+xxx Show an example and demonstrate how it is done.
+\end{small}
+
+\end{frame}
+
+
+\begin{frame}[t]{Solving linear equations: Rectangular systems and Echelon forms}
+\vspace{-0.5cm}
+
+\begin{small}
+\[
+\left[
+\begin{array}{cccc|c}
+a_{11} & a_{12} & \cdots & a_{1m} & b_1 \\
+a_{21} & a_{22} & \cdots & a_{2m} & b_2 \\
+a_{31} & a_{32} & \cdots & a_{3m} & b_3 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nm} & b_n \\
+\end{array}
+\right] \longrightarrow
+\left[
+\begin{array}{cccccccc}
+\color{red}{\underline{\ast}} & \ast & \ast & \ast & \ast & \ast & \ast \\
+0 & 0 & \color{red}{\underline{\ast}}  & \ast  & \ast  & \ast  & \ast \\
+0 & 0 & 0 & \color{red}{\underline{\ast}}  & \ast  & \ast  & \ast \\
+0 & 0 & 0 & 0 & \color{red}{\underline{\ast}}  & \ast  & \ast \\
+0 & 0 & 0 & 0 & 0 & 0 & \color{red}{\underline{\ast}} \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\end{array}
+\right]
+\]
+
+xxx Show an example and demonstrate how it is done.
+\end{small}
+
+\end{frame}
+
+%\begin{frame}[t]{Vectors}
+%\begin{columns}[T]
+%\begin{column}{0.5\textwidth}
+%\begin{itemize}
+%\item \textbf{Vector addition}: Adding two vectors of the same dimension, element by element.
+%\begin{small}
+%$$ u + v = \begin{bmatrix} u_1 \\ u_2 \\ u_3 \\ \vdots \\ u_n \end{bmatrix} + \begin{bmatrix} v_1 \\ v_2 \\ v_3 \\ \vdots \\ v_n \end{bmatrix}= \begin{bmatrix} u_1 + v_1 \\ u_2 + v_2 \\ u_3 + v_3 \\ \vdots \\ u_n + v_n \end{bmatrix} \,\, u, v \in \mathbb{R}^n$$
+%\end{small}
+%\end{itemize}
+%\begin{center}
+%\begin{tikzpicture}[scale=0.8]
+%\path coordinate (a) at (0,0)
+%      coordinate (b) at (1.0,-2.0)
+%      coordinate (c) at (1.5,1.2)
+%      coordinate (d) at ($(b)!0.5!(c)$)
+%      coordinate (e) at ($(a)!2.0!(d)$);
+%\draw[thick,blue,->] (a)  -> (b);
+%\draw[thick,red,->] (a)  -> (c);
+%\draw[thick,green,->] (a)  -> (e);
+%\node[above left] at (a){$0$}; 
+%\node[blue,above right] at (b){$u$};
+%\node[red,above left] at (c){$v$};
+%\node[green,above right] at (e){$u+v$};
+%\end{tikzpicture}
+%\end{center}
+%\end{column}
+%\begin{column}{0.5\textwidth}
+%\textbf{Properties}
+%\begin{itemize}
+%\item Vector addition is \textit{commutative}.
+%$$ a + b = b + a $$
+%\item Vector addition is \textit{associative}.
+%$$ \left(a + b\right) + c =	 a + \left(b + c \right) $$
+%\item Zero vector has no effect.
+%$$ a + 0 = a $$
+%\item Subtraction of vectors. 
+%$$ a + (-1)a = a - a = 0 $$
+%\end{itemize}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[t]{Vector spaces}
+%\begin{itemize}
+%\item A set of that is closed under \textit{vector addition} and \textit{vector scaling}. 
+%\item For a set to be a vector space, it must satisfy the followng properties: $x, y, x \in V$
+%\begin{itemize}
+%\item \textit{Commutativity}: $x+ y = y + x$
+%\item \textit{Associativity of vector addition}: $(x + y) + z = x + (y + z)$
+%\item \textit{Additive identity}: $x + 0 = 0 + x = 0$ $\left(0 \in V\right)$
+%\item \textit{Additive inverse}: $\exists -x \in V, x + (-x) = 0$
+%\item \textit{Associativity of scalar multiplication}: $\alpha\left(\beta x\right) = \left(\alpha\beta x\right)$
+%\item \textit{Distributivity of scalar sums}: $\left(\alpha + \beta\right)x = \alpha x + \beta x$
+%\item \textit{Distributivity of vector sums}: $\alpha\left(x + y\right) = \alpha x + \alpha y$
+%\item \textit{Scalar multiplication identity}: $1x = x$
+%\end{itemize}
+%\item $W$ is a subspace of $V$, if $W \subseteq V$ and $W$ is itself a vector space.
+%\item We will mostly deal with $\mathbb{R}^n$ vectors spaces in this course.
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[t]{Inner product}
+%\begin{itemize}
+%\item Standard inner product between two vectors $x, y \in \mathbb{R}^n$ is defined as,
+%$$ x^Ty = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ \vdots \\ x_n \end{bmatrix}^T \begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_n \end{bmatrix} = \sum_{i=1}^{n}x_iy_i$$
+%\item \textbf{Properties}
+%\begin{itemize}
+%\item \textit{Commutative}: $x^Ty = y^Tx$
+%\item \textit{Associativity with scalar multiplication}: $\left(\alpha x\right)^Ty = \alpha \left(x^Ty\right)$
+%\item \textit{Distributivity with vector addition}: $\left(x + y\right)^Tz = x^Tz + y^Tz$
+%\end{itemize}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[t]{Norm}
+%\begin{columns}[T]
+%\begin{column}{0.65\textwidth}
+%\begin{itemize}
+%\item Norm is a measure of the size of a vector.
+%\item \textit{Euclidean norm} of a $n$-vector $x \in \mathbb{R}^n$ is defined as, $\left\Vert x\right\Vert_2 = \sqrt{x^Tx} = \sqrt{\sum_{i=1}^{n}x_i^2}$.
+%\item $\left\Vert x \right\Vert_2$ is a measure of the length of the vector $x$.
+%\item \textbf{Properties}
+%\begin{itemize}
+%\item \textit{Non-negativity}. $\left\Vert x \right\Vert \geq 0$
+%\item \textit{Non-negative homogeneity}. $\left\Vert \beta x \right\Vert = \left|\beta\right|\left\Vert x \right\Vert, \, \beta \in \mathbb{R}$
+%\item \textit{Triangle inequality}. $\left\Vert x + y\right\Vert \leq \left\Vert x\right\Vert + \left\Vert y\right\Vert$
+%\item \textit{Definiteness}. $\left\Vert x\right\Vert = 0 \iff x = 0$
+%\end{itemize}
+%\item Any function of the form $\left\Vert\bullet\right\Vert: \mathbb{R}^n \longrightarrow \mathbb{R}$ is a valid norm.
+%\item $p$-norm: $\left\Vert x \right\Vert_p = \left(\sum_{i=1}^{n}\left|x_i\right|^p\right)^{\frac{1}{p}}$
+%\item Norm of difference between two vectors is a measure of the distance between the vectors. $d = \left\Vert x - y \right\Vert_2$.
+%\end{itemize}
+%\end{column}
+%\begin{column}{0.35\textwidth}
+%\begin{tikzpicture}[scale=0.7]
+%	\def \r{0.9}
+%	\def \ya{0}
+%	\def \yb{-2.5}
+%	\def \yc{-5}
+%	\def \yd{-7.5}
+%	
+%	\draw[->] (3.9,\ya) -- (6.1,\ya) node[black,right,xshift=0.cm, yshift=0.cm] {\small{$\left\Vert x \right\Vert_1 = \sum_{i=1}^{n}\left|x_i\right|$}};
+%	\draw[->] (5,\ya-1.1) -- (5,\ya+1.1);
+%	\draw[thick, gray] (5-\r,0)--(5,\r)--(5+\r,0)--(5,-\r)--cycle;
+%	
+%	\draw[->] (3.9,\yb) -- (6.1,\yb) node[black,right,xshift=0.cm, yshift=0.cm] {\small{$\left\Vert x \right\Vert_2 = \left(\sum_{i=1}^{n}x_i^2\right)^{\frac{1}{2}}$}};
+%	\draw[->] (5,\yb-1.1) -- (5,\yb+1.1);
+%	\draw [thick, gray](5,-2.5) circle (\r);
+%	
+%	\draw[->] (3.9,\yc) -- (6.1,\yc) node[black,right,xshift=0.cm, yshift=0.cm] {\small{$\left\Vert x \right\Vert_\infty = \max_{1\leq i\leq n}\left|x_i\right|$}};
+%	\draw[->] (5,\yc-1.1) -- (5,\yc+1.1);
+%	\draw[thick, gray] (5-\r,-5-\r)--(5-\r,-5+\r)--(5+\r,-5+\r)--(5+\r,-5-\r)--cycle;
+%
+%	\draw[->] (3.9,\yd) -- (6.1,\yd) node[black,right,xshift=0.cm, yshift=0.cm] {\small{$\left\Vert x \right\Vert_p = \left(\sum_{i=1}^{n}x_i^p\right)^{\frac{1}{p}}$}};
+%	\draw[->] (5,\yd-1.1) -- (5,\yd+1.1);
+%	\draw[thick, gray,scale=1,domain=0:90,samples=100,smooth,variable=\t]
+%	plot({-\r*sqrt(cos(\t))+5},{\r*sqrt(sin(\t))-7.5});
+%	\draw[thick, gray,scale=1,domain=0:90,samples=100,smooth,variable=\t]
+%	plot({-\r*sqrt(cos(\t))+5},{-\r*sqrt(sin(\t))-7.5});
+%	\draw[thick, gray,scale=1,domain=0:90,samples=100,smooth,variable=\t]
+%	plot({\r*sqrt(cos(\t))+5},{-\r*sqrt(sin(\t))-7.5});
+%	\draw[thick, gray,scale=1,domain=0:90,samples=100,smooth,variable=\t]
+%	plot({\r*sqrt(cos(\t))+5},{\r*sqrt(sin(\t))-7.5});                 
+%\end{tikzpicture}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[t]{Angle between vectors}
+%\begin{columns}[T]
+%\begin{column}{0.65\textwidth}
+%\begin{itemize}
+%\item \textbf{Cauchy-Schwartz Inequality}: $\left|x^Ty\right| \leq \left\Vert x \right\Vert_2 \left\Vert y \right\Vert_2$
+%\item \textbf{Angle between two vectors} is defined as, $\theta = \arccos \left(\frac{x^Ty}{\left\Vert x \right\Vert_2 \left\Vert y \right\Vert_2}\right) \implies  x^Ty = \left\Vert x \right\Vert_2 \left\Vert y \right\Vert_2 \cos \theta$
+%\item Inner product measures the projection of one vector on the other.
+%\end{itemize}
+%\end{column}
+%\begin{column}{0.35\textwidth}
+%\begin{tikzpicture}[scale=1.0]
+%	\draw[blue,thick,->] (0, 0) -- (1.8, 1.8) node[black, above, right]{$y$};
+%	\draw[red,thick,->] (0, 0) -- (3.3, 0.0) node[black, above, right]{$x$};
+%	\draw[black,domain=0:45] plot({0.75 * cos(\x)}, {0.75 * sin(\x)});
+%	\node[black,xshift=0.9cm,yshift=0.4cm] {$\theta$};
+%	\draw[thick,dashed] (1.8,1.8) -- (1.8,0);
+%	\draw[gray,black] (0,-0.1) -- (0,-0.3);
+%	\draw[gray,black] (1.8,-0.1) -- (1.8,-0.3);
+%	\draw[<->] (0,-0.2) -- (1.8,-0.2) node[midway,below] {$x^Ty$};
+%\end{tikzpicture}
+%\end{column}
+%\end{columns}
+%\begin{center}
+%\begin{tikzpicture}[scale=1.0]
+%	\draw[blue,thick,->] (0, 0) -- (1.1, 1.1) node[black, above, right]{$y$};
+%	\draw[red,thick,->] (0, 0) -- (2.5, 0.0) node[black, above, right]{$x$};
+%\end{tikzpicture}
+%\begin{tikzpicture}[scale=1.0]
+%	\draw[blue,thick,->] (0, 0) -- (-0.1, 1.25) node[black, above, right]{$y$};
+%	\draw[red,thick,->] (0, 0) -- (2.5, 0.2) node[black, above, right]{$x$};
+%\end{tikzpicture}
+%\begin{tikzpicture}[scale=1.0]
+%	\draw[blue,thick,->] (0, 0) -- (-1.1, 1.5) node[black, above, left]{$y$};
+%	\draw[red,thick,->] (0, 0) -- (1.8, 0.0) node[black, above, right]{$x$};
+%\end{tikzpicture}
+%\begin{tikzpicture}[scale=0.5]
+%	\draw[red,thick,->] (0, 0) -- (-2.0, 3.0) node[black, above, right]{$x$};
+%	\draw[blue,thick,->] (0, 0) -- (-1.0, 1.5) node[black, above, right]{$y$};
+%\end{tikzpicture}
+%\begin{tikzpicture}[scale=0.5]
+%	\draw[red,thick,->] (0, 0) -- (-2.0, 3.0) node[black, above, right]{$x$};
+%	\draw[blue,thick,->] (0, 0) -- (1.0, -1.5) node[black, above, right]{$y$};
+%\end{tikzpicture}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}[t]{Linear independence}
+%\begin{itemize}
+%\item A collection of vectors $\left(x_1, x_2, x_3, \ldots x_n \right), \,\,\, x_i \in \mathbb{R}^m \,\,\, i \in\left\{1, 2, 3, \ldots n\right\}$ is called \textit{linear dependent} if,
+%$$\sum_{i=1}^na_ix_i = 0, \text{ hold for some } a_1, a_2, \ldots a_n \in \mathbb{R}, \text{ such that } \exists a_i \neq 0$$
+%\item Another way to state this: A collection of vectors is \textit{linear dependent} if at least one of the vectors in the collection can be expressed as a linear combination of the other vectors in the set, i.e.
+%$$x_i = -\sum_{j=1, j\neq i}^{n}\left(\frac{a_j}{a_i}\right)x_j$$
+%\item A collection of vectors is \textit{linear independent} if it is \textbf{not} \textit{linearly dependent}.
+%$$ \sum_{i=1}^na_ix_i = 0 \implies a_1=a_2=a_3\ldots=a_n = 0$$
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[t]{Basis}
+%\begin{itemize}
+%\item Consider a vector $y = \sum_{i=1}^na_ix_i$. What can we say about the coefficients $a_i$s when the collection ${x_i}_{i=1}^n$ is,
+%\begin{itemize}
+%\item linearly independent $\implies a_i$s are \textit{unique}.
+%\item linearly dependent $\implies a_i$s are not \textit{unique}.
+%\end{itemize}
+%\item \textbf{Independence-Dimension inequality}: What is the maximum possible size of a linearly independent collection?
+%\center{\textit{A linear independent collection of n-vectors can at most have n vectors.}}
+%\end{itemize}
+%Consider $\mathbb{R}^2$ vector space. $x_1=\begin{bmatrix}1\\0\end{bmatrix}, \,\, x_2=\begin{bmatrix}1\\1\end{bmatrix} \,\, x_3 = \begin{bmatrix}-1, 1\end{bmatrix}$.
+%\begin{center}
+%\begin{tikzpicture}[scale=1.5]
+%  \draw[thick, blue, ->] (0,0) -- (1, 0) node[right]{$x_1$};
+%  \draw[thick, blue, ->] (0,0) -- (1, 1) node[below right]{$x_2$};
+%  \draw[thick, blue, ->] (0,0) -- (-1, 1) node[above]{$x_3 = -2x_1 + x_2$};
+%  \draw[dashed, red, ->] (0,0) -- (-2, 0) node[left]{$-2x_1$};
+%  \draw[dotted, thick, black] (-2,0) -- (-1, 1);
+%  \draw[dotted, thick, black] (-1,1) -- (1, 1);
+%\end{tikzpicture}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}[t]{Basis}
+%\begin{itemize}
+%\item A linearly independent collection of $n$ $n$-vector is called a \textit{basis}. In particular, it is a basis of $\mathbb{R}^n$.
+%\item Any $n$-vector can be represented as a \textit{unique} linear combination of the elements of the basis.
+%\item Consider the basis $\left\{x_i\right\}_{i=1}^{n}$. A $n$-vector $y$ can be represented as a linear combination of $x_i$s, $y = \sum_{i=1}^n a_ix_i$. This is called the \textit{expansion of} $y$ in the $\left\{x_i\right\}_{i=1}^n$ basis.
+%\item The numbers $a_i$ are called the \textit{coefficients} of the expansion of $y$ in the $\left\{x_i\right\}_{i=1}^n$ basis.
+%\item \textbf{Orthonormal vectors}: A collections of vectors $\left\{x_i\right\}_{i=1}^n$ is \textit{(mutually) orthogonal} is $x_i \perp x_j$ for all $i, j \in \left\{1, 2, 3, \ldots n\right\}$ and $i \neq j$.
+%\item This collection is called \textit{orthonormal} if its elements are all of unit length $\left\Vert x_i \right\Vert_2 = 1$ for all $i \in \left\{1, 2, 3, \ldots n\right\}$.
+%\end{itemize}
+%\[ x_i^Tx_j = \begin{cases} 
+%      0 & i \neq j \\
+%      1 & i = j 
+%   \end{cases}
+%\]
+%\end{frame}
+%
+%\begin{frame}[t]{Basis}
+%\begin{itemize}
+%\item An orthonormal collection of vectors is linearly independent.
+%\item Consider an orthonormal basis $\left\{x_i\right\}_{i=1}^{n}$. The expansion of a vector $y$ is given by,
+%\[ y = a_1x_1 + a_2x_2 + a_3x_3 + \ldots + a_nx_n \]
+%\[ x_i^Ty = a_1x_i^Tx_1 + a_2x_i^Tx_2 + a_3x_i^Tx_3 + \ldots + a_nx_i^Tx_n = a_i\]
+%\item Thus, we can rewrite this as,
+%\[ y = \left(y^Tx_1\right)x_1 + \left(y^Tx_2\right)x_2 + \left(y^Tx_3\right)x_3 + \ldots + \left(y^Tx_1\right)x_n \]
+%\end{itemize}
+%\begin{center}
+%\begin{tikzpicture}[scale=2.5]
+%  \foreach \x in {-0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2}
+%    \draw[gray, thin, densely dashed] (\x,-0.2)--(\x,1.2);
+%  \foreach \x in {-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2}
+%    \draw[gray, thin, densely dashed] (-0.4,\x)--(1.2,\x);
+%  \draw[thick, densely dashed, black] (0.4,0.8) -- (0.4,0);
+%  \draw[thick, densely dashed, black] (0.4,0.8) -- (0.,0.8);
+%  \draw[very thick, blue, ->] (0,0) -- (1,0) node[right]{$x_1$};
+%  \draw[very thick, blue, ->] (0,0) -- (0,1) node[above right]{$x_2$};
+%  \draw[very thick, red, ->] (0,0) -- (0.4,0.8) node[above]{$y$};
+%\end{tikzpicture}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}[t]{Gram-Schmidt algorithm}
+%\begin{itemize}
+%\item Given a collection of vectors, how can we determine if it is linearly independent? $\longrightarrow$ Gram-Schmidt algorithm
+%\item If a collection $\left\{x_i\right\}_{i=1}^{n}$ is linearly independent, the algorithm produces an orthonormal basis for the space spanned by the set.
+%\end{itemize}
+%\begin{small}
+%\begin{center}
+%\fbox{\begin{minipage}{35em}
+%\begin{algorithm}[H]
+%  \KwData{$\left\{x_i\right\}_{i=1}^n$}
+%  \KwResult{True/False indicating linear independence of $\left\{x_i\right\}_{i=1}^n$ \& if True returns an orthogonal basis $\left\{q_i\right\}_{i=1}^{n}$.}
+%  \For{$i = 1, 2, \ldots n$}{
+%  1. $\tilde{q}_i = x_i - \sum_{j=1}^{i-1}\left(q_j^Tx_i\right)q_i$ $\longrightarrow$(\textbf{Orthogonalization step})\;
+%  2. \textbf{If} $\tilde{q}_i=0$ \textbf{then} quit\;
+%  3. $q_i = \tilde{q}_i / \left\Vert\tilde{q}_i\right\Vert $ $\longrightarrow$(\textbf{Normalization step})\;
+%  }
+%  \textbf{return} $\left\{q_i\right\}_{i=1}^n$\;
+%\end{algorithm}
+%\end{minipage}}
+%\end{center}
+%\end{small}
+%\end{frame}
+%
+%\begin{frame}[t]{Gram-Schmidt algorithm}
+%\begin{itemize}  
+%\item When algorithm quits before $i=n$, then the collection $\left\{x_i\right\}_{i=1}^n$ is linearly dependent.
+%\item At each iteration step $i$, we have an orthonormal set $\left\{q_j\right\}_{j=1}^i$. $q_l^Tq_m = \begin{cases} 1 & l = m\\ 0 & l \neq m \end{cases}$
+%\item $x_i$ is a linear combination of $\left\{q_j\right\}_{j=1}^i$.
+%\item $q_i$ is a linear combination of $\left\{x_j\right\}_{j=1}^i$.
+%\end{itemize}
+%\end{frame}
+
+\end{document}

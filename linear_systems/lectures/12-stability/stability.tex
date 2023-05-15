@@ -1,0 +1,463 @@
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\documentclass[aspectratio=169]{beamer}
+%\documentclass{beamer}
+
+\setbeamersize{text margin left=10mm, text margin right=10mm}
+
+\defbeamertemplate{headline}{my header}{%
+\vskip1pt%
+\makebox[0pt][l]{\,\insertshortauthor}%
+\hspace*{\fill}\insertshorttitle/\insertshortsubtitle\hspace*{\fill}%
+\llap{\insertpagenumber/\insertpresentationendpage\,}
+}
+\setbeamertemplate{headline}[my header]
+
+\usepackage{graphicx}
+\usepackage{soul}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usepackage[]{algorithm2e}
+\usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{textcomp}
+\usetikzlibrary{shapes}
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.8}
+\usetikzlibrary{positioning}
+\usepackage[tikz]{bclogo}
+\presetkeys{bclogo}{
+ombre=false,
+epBord=0,
+couleur = black!10!white,
+couleurBord = red,
+arrondi = 0.1,
+logo=,
+}{}
+% \usepackage[math]{cellspace}
+% \cellspacetoplimit 4pt
+% \cellspacebottomlimit 4pt
+%\usetikzlibrary{arrows.meta}
+% sqare of half axes
+\newcommand{\asa}{3}
+\newcommand{\bsa}{1}
+\newcommand{\csa}{0.25}
+% view angle
+\tdplotsetmaincoords{70}{135}
+
+%\setbeamertemplate{itemize items}{-}
+
+%\usepackage{helvet}
+\usefonttheme{professionalfonts} % using non standard fonts for beamer
+%\usefonttheme{serif} % default family is serif
+%\usepackage{fontspec}
+%\setmainfont{Liberation Serif}
+
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\def\mf{\ensuremath\mathbf}
+\def\mb{\ensuremath\mathbb}
+\def\lp{\ensuremath\left(}
+\def\rp{\ensuremath\right)}
+\def\lv{\ensuremath\left\lvert}
+\def\rv{\ensuremath\right\rvert}
+\def\lV{\ensuremath\left\lVert}
+\def\rV{\ensuremath\right\rVert}
+\def\lc{\ensuremath\left\{}
+\def\rc{\ensuremath\right\}}
+\def\ls{\ensuremath\left[}
+\def\rs{\ensuremath\right]}
+\def\bmx{\ensuremath\begin{bmatrix*}[r]}
+\def\emx{\ensuremath\end{bmatrix*}}
+\def\bmxc{\ensuremath\begin{bmatrix*}[c]}
+\def\t{\lp t\rp}
+\def\k{\ls k\rs}
+
+
+\newcommand{\demoex}[2]{\onslide<#1->\begin{color}{black!60} #2 \end{color}}
+\newcommand{\demoexc}[3]{\onslide<#1->\begin{color}{#2} #3 \end{color}}
+\newcommand{\anim}[3]{\onslide<#1->{\begin{color}{#2!60} #3 \end{color}}}
+\newcommand{\ct}[1]{\lp #1\rp}
+\newcommand{\dt}[1]{\ls #1\rs}
+\newcommand{\cols}[2]{\begin{columns}[#1] #2 \end{columns}}
+\newcommand{\col}[2]{\begin{column}{#1} #2 \end{column}}
+
+
+% \newenvironment{rcases}
+% {\left.\begin{aligned}}
+% {\end{aligned}\right\rbrace}
+
+
+\title{Linear Systems}
+
+% A subtitle is optional and this may be deleted
+\subtitle{Stability}
+
+\author{Sivakumar Balasubramanian}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Christian Medical College] % (optional, but mostly needed)
+{
+  \inst{}%
+  Department of Bioengineering\\
+  Christian Medical College, Bagayam\\
+  Vellore 632002
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date{}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+\subject{Lecture notes on linear systems}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% Let's get started
+\begin{document}
+
+\pgfplotsset{
+  compat=1.8,
+  colormap={whitered}{color(0cm)=(white); color(1cm)=(orange!75!red)}
+}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}[t]{Internal stability}
+\begin{itemize}
+    \item There are two types of stability one can associate with a system $\dot{\mf{x}}\ct{t} = \mf{f}\ct{\mf{x}\ct{t}, \mf{u}\ct{t}}$ -- \textbf{Internal stability} and \textbf{Input-Output stability}.
+
+    \item \textbf{Internal stability}: Deals with the stability of the zero-input response of the system states, i.e. $\dot{\mf{x}}\ct{t} = \mf{f}\ct{\mf{x}\ct{t}}$.
+
+    \item An \textit{equilibrium point} $\mf{x}_e$ of this system is defined as a point in the state space where, $\dot{\mf{x}}\ct{t} = \mf{f}\ct{\mf{x}_e} = \mf{0}$, i.e. if the system starts in this state, it stays in that state for all time.
+
+    \item In the case of linear systems, we have $\mf{A}\mf{x}_e = \mf{0}$. The nullspace of $\mf{A}$ is the set of all equilibrium points of the linear system.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Internal stability}
+Find the equilibrium points for the following systems with $\mf{f}\ct{\mf{x}\ct{t}}$: (a) $\bmxc x_2 \\ \sin x_1\emx$; (b) $\bmx x_1 + 2x_2\\ 2x_1 + 3x_2\emx$; (c) $\bmx -x_1 + x_2\\ x_1 - x_2\emx$; and (d) $\bmx 0 \\ 0\emx$.
+\end{frame}
+
+
+\begin{frame}[t]{Internal stability}
+\begin{itemize}
+    \item Definition of stability in the Lyapunov sense for linear systems: 
+    \begin{itemize}
+      \item The zero-input response of a linear system $\dot{\mf{x}}\ct{t} = \mf{A}\mf{x}\ct{t}$ is \textit{stable or marginally stable} if every finite initial condition $\mf{x}\ct{0^-}$ results in a bounded state trajectory $\mf{x}\ct{t}$ $\forall t \geq 0$.
+      \[ \lV \mf{x}\ct{t}\rV \leq d, \,\,\, \forall t \geq 0 \]
+
+      \item The zero-input response is \textit{asymtotically stable} if everyf initial condition $\mf{x}\ct{0^-}$ results in a bounded state trajectory $\mf{x}\ct{t}$ that coverges to $0$ as $t \to \infty$.
+      \[ \lV \mf{x}\ct{t}\rV \leq d \text{ and } \lim_{t \to \infty} \lV \mf{x}\ct{t}\rV = 0 \]
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Internal stability}
+\begin{itemize}
+    \item The system $\dot{\mf{x}}\ct{t} = \mf{A}\mf{x}\ct{t}$ is marginally stable if and only if all eigenvales of $\mf{A}$ have either zero or negative real parts, and the eigenvalues with zero real parts have the same algebraic and geometric multiplicity.
+
+    \item  The system $\dot{\mf{x}}\ct{t} = \mf{A}\mf{x}\ct{t}$ is asymptotically stable if and only if all eigenvales of $\mf{A}$ have  negative real parts.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Internal stability}
+\begin{itemize}
+    \item Consider the solution, $\mf{x}\ct{t} = e^{t\mf{A}}\mf{x}\ct{0^-}, \,\,\, t \geq 0$, and $\mf{A} = \mf{V}\mf{J}\mf{V}^{-1}$.
+    \[ \lV \mf{x}\ct{t} \rV = \lV e^{t\mf{A}}\mf{x}\ct{0^-} \rV \leq \lV e^{t\mf{J}} \rV \lV \mf{x}\ct{0^-} \rV\]
+
+    \item When $\mf{A}$ is diagonalizable ($\lambda_i$ are the eigenvalues of $\mf{A}$),
+    \begin{itemize}
+        \item $ \lV \mf{x}\ct{t} \rV \leq  e^{\sigma t} \lV \mf{x}\ct{0^-} \rV$, where $\sigma = \max_i \Re \lc \lambda_i \rc$.
+        \item When $\sigma = 0$, $\lV \mf{x}\ct{t}\rV$ is bounded $\forall t \geq 0$.
+        \item When $\sigma < 0$, $\lim_{t \to \infty} \lV \mf{x}\ct{t}\rV = 0$.
+    \end{itemize}\vspace{0.2cm}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Internal stability}
+\begin{itemize}
+    \item When $\mf{A}$ is not diagonalizable, then $\mf{J}$ is block diagonal.
+    \begin{itemize}
+        \item Consider the $i^{th}$ Jordan block, $\mf{J}_i = \lambda_i \mf{I} + \mf{N}$, Thus, $e^{t\mf{J}_i} = e^{\lambda_i t\mf{I}}e^{t\mf{N}} \implies $ $ \lV \mf{x}\ct{t} \rV \leq e^{\sigma_i t} \lV e^{t\mf{N}} \rV \lV \mf{x}\ct{0^-} \rV$
+
+        \item When $\sigma_i = 0$, $\lV e^{t\mf{N}} \rV$ grows with time, and thus $\mf{x}\ct{t}$ is not bounded. 
+
+        \item When $\sigma_i < 0$, the $e^{\sigma_i t}$ term does not allow $\mf{x}\ct{t}$ to grow. 
+    \end{itemize}
+\end{itemize}
+\end{frame}
+ 
+
+\begin{frame}[t]{Internal stability}
+Comment of the stability: (a) $\bmx -1 & 1\\ 0 & -2\emx$; (b) $\bmx 0 & -1\\ 1 & 0\emx$; (c) $\bmx 1 & 2\\ 0 & -2\emx$;  and (d) $\bmx -1 & -1 & 1\\ 0 & -2 & 1\\ 0 & 0 & 0\emx$
+\end{frame}
+ 
+
+% \begin{frame}[t]{Internal stability -- Lyapunov stability criteria}
+% \begin{itemize}
+%     \item A general approach to evaluating the the stability of a dynamic system $\dot{\mf{x}}\ct{t} = \mf{f}\ct{\mf{x}\ct{t}}$ was proposed by Lyapunov. 
+
+%     \item Stability is inferred by looking at the energy associated with a system, and how it changes as the system evolves. i.e, whether the system dissipates, conserves or generates energy with time.
+
+%     \item The idea of the energy associated with the system and its change with time is captured through a \textit{Lyapunov function} $V\ct{\mf{x}}: \mb{R}^n \to \mb{R}_{\geq 0}$,
+%     \[ V\ct{\mf{0}} = 0 \,\, \text{ and } V\ct{\mf{x}} > 0 \,\, \forall \mf{x} \neq \mf{0}, \,\,\, \text{ and } \dot{V}\ct{\mf{x}} \leq 0 \]
+% \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}[t]{Internal stability -- Lyapunov stability criteria}
+% \begin{itemize}
+%     \item $\dot{V}\ct{\mf{x}} = \ct{\frac{\partial}{\partial\mf{x}}V\ct{\mf{x}}}\dot{\mf{x}} = \ct{\frac{\partial}{\partial\mf{x}}V\ct{\mf{x}}}\mf{f}\ct{\mf{x}}$ is the time rate of change of energy of the system. 
+
+%     \begin{itemize}
+%         \item Stable (marginally) systems conserve energy, i.e. $\dot{V}\ct{\mf{x}} = 0$.
+%         \item Asymptotically stable systems dissipate energy, i.e. $\dot{V}\ct{\mf{x}} < 0$.
+%         \item Unstable systems generate energy, i.e. $\dot{V}\ct{\mf{x}} > 0$.
+%     \end{itemize}
+
+%     \item For a given system, if we can find a Lyapunov function, then the system is stable or asymptotically stable if $\dot{V}\ct{\mf{x}} < 0$.
+% \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}[t]{Internal stability -- Lyapunov stability criteria}
+% \begin{itemize}
+%     \item Consider, $\dot{\mf{x}}\ct{t} = \bmx 0 & 1 \\ -\frac{k}{m} & -\frac{b}{m} \emx\mf{x}\ct{t}$. The energy associated with this system is $V\ct{\mf{x}} = \frac{1}{2}kx_1^2 + \frac{1}{2}mx_2^2$ $\implies \dot{V}\ct{\mf{x}} = -b x_2^2$. Is this system stable?
+% \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}{Internal stability -- Lyapunov stability criteria}
+% \begin{itemize}
+%     \item Consider a general LTI system, $\dot{\mf{x}}\ct{t} = \mf{A}\mf{x}\ct{t}$, with non-singular $\mf{A}$.
+
+%     A necessary and sufficient condition for this system to be asymptotically stable is for a given symmetric, positive definite matrix $\mf{Q}$, there exists a symmetric, positive definite matrix $\mf{P}$ such that
+%     \[ \mf{A}^T\mf{P} + \mf{P}\mf{A} = - \mf{Q} \] 
+
+%     \item We can arbitrarily choose $\mf{Q}$ and solve for $\mf{P}$. The positive definiteness of $\mf{P}$ is a necessary and sufficient condition for the asymptotic stability of the LTI system.
+% \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}[t]{Internal stability -- Lyapunov stability criteria}
+% Is this system asymptotically stable? $\dot{\mf{x}}\ct{t} = \bmx 1 & 2 \\ -1 & 2 \emx\mf{x}\ct{t}$
+% \end{frame}
+
+
+% \begin{frame}[t]{Internal stability -- Discrete-time LTI systems}
+% \begin{itemize}
+%     \item The system $\mf{x}\dt{k+1} = \mf{A}\mf{x}\dt{k}$ is marginally stable if and only if all eigenvales of $\mf{A}$ either of magnitude 1 or less than 1, and the eigenvalues with magnitude 1 have the same algebraic and geometric multiplicity.
+
+%     \item  The system $\mf{x}\dt{k+1} = \mf{A}\mf{x}\dt{k}$ is asymptotically stable if and only if all eigenvales of $\mf{A}$ have magnitude less than 1.
+
+%     \item $\mf{x}\dt{k} = \mf{A}^k\mf{x}\dt{0}, \, k > 0$, and $\mf{A} = \mf{V}\mf{J}\mf{V}^{-1}$
+%     \[ \lV \mf{x}\dt{k} \rV = \lV \mf{A}^k\mf{x}\ct{0^-} \rV \leq \lV \mf{J}^k \rV \lV \mf{x}\ct{0^-} \rV\]
+% \end{itemize}
+% \end{frame}
+
+
+\begin{frame}[t]{Internal stability -- Discrete-time LTI systems}
+When $\mf{A}$ is diagonalizable ($\lambda_i$ are the eigenvalues of $\mf{A}$),
+\begin{itemize}
+    \item $\lV \mf{x}\dt{k} \rV \leq  \lv \lambda \rv^k \lV \mf{x}\dt{0} \rV$, where $\lambda = \max_i \lv \lambda_i \rv$.
+    \item When $\lv \lambda \rv = 1$, $\lV \mf{x}\dt{k}\rV$ is bounded $\forall k > 0$.
+    \item When $\lv \lambda \rv < 1$, $\lim_{k \to \infty} \lV \mf{x}\dt{k}\rV = 0$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Internal stability -- Discrete-time LTI systems}
+When $\mf{A}$ is not diagonalizable, then $\mf{J}$ is block diagonal.
+\begin{itemize}
+    \item Consider the $i^{th}$ Jordan block, $\mf{J}_i^k = \ct{\lambda_i \mf{I} + \mf{N}}^k = \sum_{l=0}^k \frac{k!}{(k - l)!l!}\lambda_i^l\mf{N}^{k - l}$
+
+    \item When $\lv \lambda_i\rv = 1$, $\lV \mf{J}_i^k \rV$ grows with time, and thus $\mf{x}\dt{k}$ is not bounded.
+
+    \item When $\lv \lambda_i\rv < 1$, the $\lambda_i^l$ term does not allow $\mf{x}\dt{k}$ to grow.
+\end{itemize}
+\end{frame}
+
+
+% \begin{frame}[t]{Internal stability -- Lyapunov stability criteria (discrete-time system)}
+% \begin{itemize}
+%     \item For a discrete-time system, $\mf{x}\dt{k + 1} = \mf{A}\mf{x}\dt{k}$, we again start with a scalar, positive definite, continuous (``energy'' like) function $V\ct{\mf{x}}$.
+
+%     \item The rate of change of energy is captured by successive differences in the values of $V\ct{\mf{x}}$ for different values of $k$, i.e. $\Delta V\ct{\mf{x}} = V\ct{\mf{x}\dt{k + 1}} - V\ct{\mf{x}\dt{k}}$.
+%     \begin{itemize}
+%       \item Stable (marginally) systems conserve energy, i.e. $\Delta V\ct{\mf{x}} = 0$.
+%       \item Asymptotically stable systems dissipate energy, i.e. $\Delta V\ct{\mf{x}} < 0$.
+%       \item Unstable systems generate energy, i.e. $\Delta V\dt{\mf{x}} > 0$.
+%     \end{itemize}
+% \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}{Internal stability -- Lyapunov stability criteria (discrete-time system)}
+% \begin{itemize}
+%     \item A necessary and sufficient condition for this system $\mf{x}\dt{k+!} = \mf{A}\mf{x}\dt{k}$ to be asymptotically stable is for a given symmetric, positive definite matrix $\mf{Q}$, there exists a symmetric, positive definite matrix $\mf{P}$ such that
+%     \[ \mf{A}^T\mf{P}\mf{A} + \mf{P} = - \mf{Q} \] 
+
+%     \item We can arbitrarily choose $\mf{Q}$ and solve for $\mf{P}$. The positive definiteness of $\mf{P}$ is a necessary and sufficient condition for the asymptotic stability of the LTI system.
+% \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}[t]{Internal stability -- Lyapunov stability criteria (discrete-time system)}
+% Is this system asymptotically stable? $\mf{x}\dt{k+1} = \bmx 1 & 2 \\ -1 & 2 \emx\mf{x}\dt{k}$
+% \end{frame}
+
+
+\begin{frame}[t]{Input-Output stability}
+\begin{itemize}
+    \item Input-output stability or external stability deals with the forced response of a system, assuming the system is relaxed.
+
+    \item Input-output stability is also known as BIBO (bounded input, bounded output) stability, i.e. a bounded input $\mf{u}\ct{t}$ applied to the system produces a bounded output $\mf{y}\ct{t}$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Input-Output stability}
+\begin{itemize}
+    \item A single input, single output (SISO) LTI system with impulse response $h\ct{t}$ is BIBO stable, if and only if
+    \[ \int_{0}^{\infty} \lv h\ct{t}\rv dt < \infty \]
+
+    When $h\ct{t}$ is not absolutely integrable, then we are not guaranteed that bounded inputs will produce bounded outputs.
+
+    \item A SISO system with a rational transfer function $H\ct{s}$ is BIBO stable if and only if all its poles lie in the left half of the $s$-plane.
+    \[ H\ct{s} = \frac{B\ct{s}}{A\ct{s}} \xrightarrow{\mathcal{L}^{-1}} h\ct{t} \text{ contains } e^{p_i t}, te^{p_i t}, \ldots t^{m-1}e^{p_i t}\]
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]{Input-Output stability}
+\begin{itemize}
+    \item In the case of a muti-input, multi-output (MIMO) LTI system, the impulse response and transfer function matrices are given by,
+    \[ \mf{G}\ct{t} = \mf{C}e^{t\mf{A}}\mf{B} + \mf{D}\delta\ct{t} \text{ and } \mf{H}\ct{s} = \mf{C}\ct{s\mf{I} - \mf{A}}^{-1}\mf{B} + \mf{D} \]
+
+    \item A MIMO system is BIBO stable, if and only if each element of the impulse response matrix $\mf{G}\ct{t}$ is absolutely integrable.
+    \[ \int_{0}^\infty \lv g_{ij}\ct{t}\rv dt < \infty , \,\,\, \forall 1 \leq i, j \leq n \]
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}[t]{Input-Output stability}
+\begin{itemize}
+    \item A MIMO LTI system is BIBIO stable, if and only if the poles of each element of the transfer function matrix $H\ct{s}$ lie in the left half of the $s$-plane.
+
+    Even if we have eigenvalue that have positive real parts, the system migth still be BIBO stable because of pole-zero cancellations in the individual elements of $\mf{G}\ct{s}$.
+\end{itemize}
+
+Is this system externally stable? $\mf{A} = \bmx 1 & 0\\ 1 & -1\emx$, $\mf{B} = \bmx 1 \\ 0\emx$, $\mf{C} = \bmx 1 & -2\emx$. Is this system internally stable?
+\end{frame} 
+
+
+\begin{frame}{Input-Output stability (discrete-time system)}
+\begin{itemize}
+    \item A SISO discrete-time LTI system with impulse response $h\dt{k}$ is BIBO stable, if and only if
+    \[ \sum_{k=0}^{\infty} \lv h\dt{k}\rv < \infty \]
+
+    \item A SISO system with a rational transfer function $H\ct{z}$ is BIBO stable if and only if all its poles lie within the unit circle $\lv z\rv = 1$.
+    \[ H\ct{z} = \frac{B\ct{z}}{A\ct{z}} \xrightarrow{\mathcal{L}^{-1}} h\dt{k} \text{ contains } p_i^k, kp_i^k, \ldots k^{m-1}p_i^k \]
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}{Input-Output stability (discrete-time system)}
+\begin{itemize}
+    \item A MIMO discret-time LTI system is BIBO stable, if and only if each element of the impulse response matrix $\mf{G}\dt{k}$ is absolutely summable.
+    \[ \sum_{k=0}^\infty \lv g_{ij}\dt{k}\rv < \infty , \,\,\, \forall 1 \leq i, j \leq n \]
+
+    \item A MIMO discrete-time LTI system is BIBO stable, if and only if the poles of each element of the transfer function matrix $H\ct{z}$ lie in the unit circle.
+\end{itemize}
+\end{frame} 
+\end{document}

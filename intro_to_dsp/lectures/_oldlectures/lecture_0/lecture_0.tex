@@ -1,0 +1,198 @@
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\documentclass{beamer}
+
+\usepackage{soul}
+
+\usefonttheme{professionalfonts} % using non standard fonts for beamer
+\usefonttheme{serif} % default family is serif
+%\usepackage{fontspec}
+%\setmainfont{Liberation Serif}
+
+% There are many different themes available for Beamer. A comprehensive
+% list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+% You can uncomment the themes below if you would like to use a different
+% one:
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+\usetheme{default}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+
+
+\title{Digital Signal Processing: Theory and Practice}
+
+% A subtitle is optional and this may be deleted
+\subtitle{Course Introduction}
+
+\author{Sivakumar Balasubramanian}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Christian Medical College] % (optional, but mostly needed)
+{
+  \inst{}%
+  Department of Bioengineering\\
+  Christian Medical College, Bagayam\\
+  Vellore 632002
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date{}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+\subject{Lecture notes on signal processing}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% Let's get started
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% WHAT IS THE COURSE ABOUT?
+\begin{frame}[t]{What is the course about?}
+\begin{itemize}
+\item Course on the theory and practice of digital signal processing techniques.
+\item Primary focus will be on understanding:
+\begin{itemize}
+\item Foundations of modern signal processing.
+\item Discrete-time signal representation and analysis.
+\item Discrete time system analysis and synthesis.
+\item Design, implementation and analysis of frequency-selective filters.
+\item Understanding and analysis of practical issues in real-time DSP algorithm implementation.
+\item Hands on experience in applying theory to solve real problems.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+% WHAT TO EXPECT FROM THE COURSE?
+\begin{frame}[t]{What to expect from the course?}
+\begin{itemize}
+\item An introduction to the foundations of signal processing.
+\item A good understanding of the theory discrete-time signals and systems.
+\item Ability to analyze and synthesize digital filters.
+\item Ability to practically implement DSP algorithms in hardware.
+\end{itemize}
+\end{frame}
+
+% PRE-REQUISITES
+\begin{frame}[t]{Pre-requisites}
+\begin{itemize}
+\item Basic understanding of real and complex analysis.
+\item Basic understanding of calculus (limits, differentiation, integration).
+\item Experience in programming (C and Python (or Matlab) would be ideal).
+\end{itemize}
+\end{frame}
+
+% COURSE LAYOUT
+\begin{frame}[t]{Course Scoring and Grading}
+
+\textbf{Total: 100} [20 + 20 + 15 + 45]
+\begin{itemize}
+\item Lab assignments: 20
+\item Surprise quiz: 20
+\item Mid-term: 15
+\item Final: 45
+\end{itemize}
+\textbf{Late submissions will be corrected but not graded.}
+\end{frame}
+
+\begin{frame}[t]{Course Scoring and Grading}
+
+\textbf{Grading policy}: \textbf{\ul{No relative grading}}
+\begin{itemize}
+\item A+: Score $\geq 90/100$
+\item A: $80 \leq$ Score $< 90$
+\item B: $70 \leq$ Score $< 80$
+\item C: $60 \leq$ Score $< 70$
+\item D: $50 \leq$ Score $< 60$
+\item E: $40 \leq$ Score $< 50$
+\item F: Score $< 40$
+\end{itemize}
+\textbf{Academic dishonesty will automatically fetch the person a `F' grade.}
+\end{frame}
+
+% COURSE CONTENT
+\begin{frame}{Course content}
+\begingroup
+    \fontsize{9pt}{12pt}\selectfont
+    \begin{enumerate}
+    \item Mathematical preliminaries
+    \item What are digital signals and systems?
+    \item Some useful and important signals
+    \item Sampling, quantization and number representation
+    \item Geometric signal theory
+    \item Discrete­time LTI systems
+    \item Discrete­-time Fourier transform and its properties
+    \item Z-­transform and its properties
+    \item Analysis of discrete-­time LTI systems
+    \item Discrete Fourier Transform and its properties
+    \item Fast Fourier Transform
+    \item Design and analysis of digital filters
+    \item Practical aspect of DSP algorithm implementation
+    \item Understanding random signals
+    \item Spectral analysis
+    \end{enumerate}  
+\endgroup
+\end{frame}
+
+\end{document}
+
+

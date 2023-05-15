@@ -1,0 +1,965 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"end",
+				"end{cases}\tassignment.tex"
+			],
+			[
+				"underbrace",
+				"underbrace{text}\tlatex-document"
+			],
+			[
+				"caption",
+				"caption{title}\tlatex-document"
+			],
+			[
+				"underbace",
+				"underbrace{text}\tlatex-document"
+			],
+			[
+				"underbra",
+				"underbrace{text}\tlatex-document"
+			],
+			[
+				"ex",
+				"exists\tlatex-mathsymbols"
+			],
+			[
+				"lsli",
+				"lslides"
+			],
+			[
+				"a",
+				"a\t<a>"
+			],
+			[
+				"longright",
+				"longrightarrow\tlatex-mathsymbols"
+			],
+			[
+				"begin",
+				"begin{dcases}\tmathtools"
+			],
+			[
+				"usepa",
+				"usepackage{package}\tlatex-document"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "assignment.tex",
+			"settings":
+			{
+				"buffer_size": 2619,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/vectors.tex",
+			"settings":
+			{
+				"buffer_size": 8622,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/matrices.tex",
+			"settings":
+			{
+				"buffer_size": 19443,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/orthogonality.tex",
+			"settings":
+			{
+				"buffer_size": 3861,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/matrix_inv.tex",
+			"settings":
+			{
+				"buffer_size": 5182,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/eigen.tex",
+			"settings":
+			{
+				"buffer_size": 4500,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/pdmn.tex",
+			"settings":
+			{
+				"buffer_size": 2743,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/svd.tex",
+			"settings":
+			{
+				"buffer_size": 4372,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/leastsqs.tex",
+			"settings":
+			{
+				"buffer_size": 13832,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/ldssol.tex",
+			"settings":
+			{
+				"buffer_size": 9552,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sections/ldsssview.tex",
+			"settings":
+			{
+				"buffer_size": 7939,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/LaTeXing/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXing/LaTeX.sublime-build",
+					"Clean up Files"
+				]
+			],
+			[
+				"Packages/LaTeXing/LaTeX.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 113.0,
+		"last_filter": "word ",
+		"selected_items":
+		[
+			[
+				"word ",
+				"Word Wrap: Toggle"
+			],
+			[
+				"syntax lat",
+				"Set Syntax: LaTeXing"
+			],
+			[
+				"word",
+				"Word Wrap: Toggle"
+			],
+			[
+				"save all",
+				"File: Save All"
+			],
+			[
+				"savea",
+				"File: Save All"
+			],
+			[
+				"save ",
+				"File: Save All"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"csv",
+				"CSV: Compact columns"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"space",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"syntax late",
+				"Set Syntax: LaTeXing"
+			],
+			[
+				"snippert",
+				"Snippet: New Article"
+			],
+			[
+				"set latexing",
+				"Set Syntax: LaTeXing"
+			],
+			[
+				"snippert ",
+				"Snippet: New Article"
+			],
+			[
+				"spell",
+				"Google Spell Check"
+			],
+			[
+				"pdf",
+				"LaTeXing: Open PDF"
+			],
+			[
+				"terminal",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"buildview",
+				"Disable/Enable buildview for this window"
+			],
+			[
+				"buildv",
+				"Disable/Enable buildview for this window"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 375.0
+	},
+	"console":
+	{
+		"height": 129.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/siva82kb/Dropbox/course/linear_systems/temp/trilatdist.csv",
+		"/home/siva82kb/Dropbox/course/linear_systems/temp/trilatctrlpos.csv",
+		"/home/siva82kb/Dropbox/course/linear_systems/temp/trilatactpos.csv",
+		"/home/siva82kb/Dropbox/course/linear_systems/temp/trilat_track_pos.csv",
+		"/home/siva82kb/Dropbox/course/linear_systems/temp/trilat_dist.csv",
+		"/home/siva82kb/Dropbox/course/linear_systems/assignment/data/ls/trigexpt.csv",
+		"/home/siva82kb/Dropbox/course/linear_systems/lectures/10-ldsss/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/info/course_info.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/assignment/sections/figs/system1.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/assignment/sections/ldstfview.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/lectures/09-lds-tfview/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/lectures/03-orthogonality/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/assignment/sections/matrix_inv.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/assignment/sections/leastsqs.tex",
+		"/home/siva82kb/Dropbox/course/linear_systems/lectures/09-lds-tfview/lecture.synctex.gz",
+		"/home/siva82kb/Documents/work/other_exams/Project_Staff/2018_HandRobot/2018_handrobot.tex",
+		"/home/siva82kb/Documents/work/other_exams/Project_Staff/2018_HandRobot/answer_sheet.tex",
+		"/home/siva82kb/Documents/work/other_exams/Project_Staff/2018_HandRobot/2018_handrobot_answer_key.tex",
+		"/home/siva82kb/Documents/work/other_exams/Project_Staff/2018_HandRobot/2018_answer_sheet.out",
+		"/home/siva82kb/Documents/work/other_exams/Project_Staff/2018_HandRobot/phd_entrance_2016.tex",
+		"/home/siva82kb/Documents/work/other_exams/IIT-CMC-SCIMST/2017-May/phd_entrance_2017.tex",
+		"/home/siva82kb/Documents/work/other_exams/IIT-CMC-SCIMST/2017-May/phd_entrance_2017_answer_sheet.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/03-orthogonality/lecture.tex",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/teaching/lce/lce.html",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/proofs/proofs.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/proofs/sections/vectors.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/proofs/sections/orthogonality.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/proofs/sections/matrix_inv.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/proofs/sections/matrices.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/assignment/sections/matrices.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/assignment/sections/vectors.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/assignment/sections/orthogonality.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/assignment/assignment.tex",
+		"/home/siva82kb/Desktop/Djkstras_laws",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/06-eigenvalvec/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/info/course_info.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/05-leastsquares/lecture.tex",
+		"/home/siva82kb/Documents/work/temp/lce/quizes/quizes.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/02-matrices/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/assignment/extras/extras_ideas.tex",
+		"/home/siva82kb/.config/sublime-text-3/Packages/User/LaTeXing.sublime-settings",
+		"/home/siva82kb/.config/sublime-text-3/Packages/LaTeXing/LaTeXing.sublime-settings",
+		"/home/siva82kb/Dropbox/course/intro_to_Robotics/assignment/assignment.tex",
+		"/home/siva82kb/Documents/work/temp/itr/quizes/quizes.tex",
+		"/home/siva82kb/Dropbox/course/intro_to_Robotics/transfer.py",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/teaching/itr/itr.html",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/assignment/sections/figs/r-grid.tex",
+		"/home/siva82kb/Dropbox/course/intro_to_Robotics/assignments/assignments.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/01-vectors/lecture.tex",
+		"/home/siva82kb/Dropbox/course/rehab_robotics/assignment/sections/matrices.tex",
+		"/home/siva82kb/Dropbox/course/rehab_robotics/assignment/assignment.tex",
+		"/home/siva82kb/Dropbox/course/rehab_robotics/assignment/sections/kinematics.tex",
+		"/home/siva82kb/Dropbox/course/rehab_robotics/assignments/assignments.tex",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised2/EMG_BCI_revision2.tex",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised2/_withchanges/with_changes.tex",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised2/response_to_reviewers.tex",
+		"/home/siva82kb/Desktop/EMG_BCI_revision2.tex",
+		"/home/siva82kb/Desktop/response_to_reviewers.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/04-matrixinverses/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/transfer.py",
+		"/home/siva82kb/Dropbox/course/rehab_robotics/info/course_info.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/05-leastsquares/figs/surf.tex",
+		"/home/siva82kb/Documents/work/website/biorehab.github.io/index.html",
+		"/home/siva82kb/Documents/work/website/biorehab.github.io/positions.html",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised2/paperbib.bib",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/data/multiobj_all.csv",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/data/multiobj_sel.csv",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/data/multiobj.csv",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/temp/multiobj.csv",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised2/_withchanges/EMG_BCI_revision2.tex",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised/EMG_BCI_revised_draft.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/assignments/assignments.tex",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/blog.html",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/index.html",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/smoothness.html",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/teaching.html",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/teaching/dsp/dsp_theoprac.html",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/research.html",
+		"/home/siva82kb/Documents/work/website/siva82kb.github.io/vacancies.html",
+		"/home/siva82kb/Dropbox/course/intro_to_Robotics/info/course_info.tex",
+		"/home/siva82kb/Dropbox/course/Intro_to_Robotics/info/course_info.tex",
+		"/media/siva82kb/backup/all_tubingen_data/py_scripts/supporting_routines.py",
+		"/media/siva82kb/backup/all_tubingen_data/py_scripts/summary_routines.py",
+		"/media/siva82kb/backup/all_tubingen_data/py_scripts/preprocess_routines.py",
+		"/media/siva82kb/backup/all_tubingen_data/output/output-new-emg-time-filter5/all_perf_summary",
+		"/media/siva82kb/backup/all_tubingen_data/output/output-new-emg-time-filter5/all_perf_summary_compact",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/04-matrixinversion/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/02-matrices/lecture.synctex.gz",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/00-intro/lecture.tex",
+		"/home/siva82kb/Dropbox/course/linear_control_and_estimation/lectures/00-intro/lecture.pdf",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised2/scrap/response_etienne.tex",
+		"/home/siva82kb/Documents/work/writing/2017/papers/journal/emg_bci_2017/revised2/response_etienne.tex",
+		"/home/siva82kb/.config/sublime-text-3/Packages/LaTeXing/Default.sublime-keymap",
+		"/home/siva82kb/Dropbox/VEGAS/journal_paper/DNR/rehab_implication.tex",
+		"/home/siva82kb/Dropbox/VEGAS/journal_paper/DNR/vegas_draft.tex",
+		"/home/siva82kb/Dropbox/VEGAS/journal_paper/DNR/vegad_draft.tex",
+		"/media/siva82kb/backup/all_tubingen_data/detect_noise.py",
+		"/media/siva82kb/backup/all_tubingen_data/preprocess_noise.py",
+		"/media/siva82kb/backup/all_tubingen_data/.gitignore"
+	],
+	"find":
+	{
+		"height": 28.8888888889
+	},
+	"find_in_files":
+	{
+		"height": 87.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"->",
+			"d_",
+			"enumerate",
+			"$n",
+			"n=5",
+			"S",
+			"S$",
+			"$S$",
+			"figure",
+			"20",
+			"hi",
+			"\\dt",
+			"$\\mf{y}\\ct{t}$",
+			"$\\mf{u}\\ct{t}$",
+			"$H_1$",
+			"enumerate",
+			"y\\ct{t}",
+			"u\\ct{t}",
+			"h_",
+			"enumerate",
+			")$",
+			"\\huge",
+			"enumerate",
+			"0.8",
+			"}$",
+			"_1",
+			"enumerate",
+			"_1",
+			"enumerate",
+			"\\bmx",
+			"1",
+			"}$",
+			"\\node[black, ",
+			"above",
+			"\\{",
+			"a_",
+			"2",
+			"1 &",
+			"v_",
+			"above",
+			"$i_",
+			",4",
+			",5",
+			",-2",
+			"-2",
+			"(8,",
+			"(6,",
+			"(4,",
+			"(2,",
+			"(0,",
+			"(6,",
+			"enumerate*",
+			"\\emx",
+			"\\bmx",
+			"\\end{enumerate*}\n",
+			"enumerate",
+			"small",
+			"\\bmx",
+			"\\item",
+			"$I",
+			"I",
+			"x_",
+			"y_",
+			"A",
+			"\\end{bmatrix*}",
+			"\\end{bmatrix*},",
+			"\\begin{bmatrix*}[r]",
+			"\\mathbb{",
+			"v_"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "assignment.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2619,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2232,
+								2232
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1176.66666667,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "sections/vectors.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8622,
+								8622
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"spell_check": true,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2463.33333333,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sections/matrices.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17966,
+								17966
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"spell_check": true,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7060.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "sections/orthogonality.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3861,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								279,
+								279
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "sections/matrix_inv.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5182,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3537,
+								3537
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1031.11111111,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "sections/eigen.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4500,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								414,
+								414
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "sections/pdmn.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2743,
+								2743
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "sections/svd.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4372,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3250,
+								3250
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"spell_check": true,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 936.666666667,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "sections/leastsqs.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13807,
+								13807
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4637.77777778,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "sections/ldssol.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9552,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7248,
+								7248
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2575.55555556,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "sections/ldsssview.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7939,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7095,
+								7095
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/LaTeXing/support/LaTeX.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.8888888889
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.454376657825,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 121.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "assignment.sublime-project",
+	"replace":
+	{
+		"height": 53.3333333333
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 113.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

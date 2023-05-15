@@ -1,0 +1,10 @@
+Latexmk: Run number 1 of rule 'pdflatex'
+Latexmk: Run number 2 of rule 'pdflatex'
+Latexmk: Summary of warnings from last run of (pdf)latex:
+  =====Latex reported missing or unavailable character(s).
+=====See log file for details.
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'D:/work/OneDrive/OneDrive - Christian Medical College/teaching/linear_systems/lectures/08-leastsquares/Output/leastsq.log' for details
+D:\Programs\texlive\2020\bin\win32\runscript.tlu:915: command failed with exit code 12:
+perl.exe d:\Programs\texlive\2020\texmf-dist\scripts\latexmk\latexmk.pl -f -quiet -pdf -synctex=1 -jobname=leastsq "-outdir=D:\work\OneDrive\OneDrive - Christian Medical College\teaching\linear_systems\lectures\08-leastsquares\Output" "D:\work\OneDrive\OneDrive - Christian Medical College\teaching\linear_systems\lectures\08-leastsquares\leastsq.tex"

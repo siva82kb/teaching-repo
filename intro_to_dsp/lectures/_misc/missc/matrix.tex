@@ -1,0 +1,695 @@
+%
+% What follows is the TeX form for the Row Echelon Decomposition
+% paper, for inclusion in the share library.
+%
+% ========= Fonts
+\font\titlefont=cmr17
+\font\authorfont=cmr12
+\font\addressfont=cmti10
+\font\sectionfont=cmbx10
+\magnification=\magstep1
+
+% ========== Heading macros
+
+\def\title#1{ {\titlefont \centerline{#1}    }      }
+\def\ByLine#1{ {\authorfont \vskip5mm \centerline{#1}}  }
+\def\address#1 { {\addressfont \vskip5mm
+                      {\halign{\centerline{##}\cr
+                          #1}}\vskip5mm}             }
+\def\section#1   { {\sectionfont \vskip5mm \centerline{#1}}
+}
+\def\theorem#1 { {\bf #1}}
+\def\proof#1 { #1}
+\def\e{\varepsilon}
+
+% ======== END OF MACROS===========
+
+\title{The row-echelon decomposition of a matrix}
+
+\ByLine{R.M. Corless, D.J. Jeffrey and M.A.H. Nerenberg
+}
+
+\address{
+Department of Applied Mathematics, The University of
+Western
+Ontario,\cr
+                  London, Ontario, Canada N6A 5B9\cr}
+
+\baselineskip=18pt
+{\narrower\smallskip\noindent
+\section{Abstract}
+The row-echelon decomposition is a new
+way of looking at the row echelon form of a rectangular
+matrix.
+It unites the reduction of a matrix to row-echelon form with
+the LU
+decomposition of a square matrix, and has the particular
+advantage of
+being well suited to the
+analysis of matrices containing symbolic entries, such as
+those
+arising in eigenvalue calculations.
+The main theorem of the paper establishes the conditions
+under which
+the decomposition is continuous with respect to variations of
+any
+symbolic parameters.
+The decomposition also facilitates the automatic
+computation of row-echelon form
+by symbolic manipulation programs, because it preserves
+special-case information which is usually lost when the
+traditional
+approach is programmed.
+The decomposition and the main theorem are illustrated
+using
+several
+examples.
+\smallskip}
+
+\vskip 2 cm
+\hrule
+\vskip 1 cm
+SUBJECT CLASSIFICATION: MSC 15A21; 15A23; 1501
+
+KEY WORDS: Row reduction, row-echelon form, Gauss
+elimination, LU
+decomposition.
+\vfil\eject
+%\baselineskip=20pt
+\section{1. Introduction}  A central topic in the study of
+linear
+algebra, as taught in most North American universities, is
+the reduction of a matrix to row-echelon form. This is taught
+initially as the use of row operations to
+transform a given matrix $A$ into a succession of equivalent
+matrices until the unique row-echelon form $R$ is reached.
+Later, using the concept of elementary matrices,
+one shows that
+$$ A=FR\ ,$$
+where $F$ is a non-singular matrix, but
+the equation is used for formal work more than computation.
+This approach is mostly satisfactory when the matrix $A$
+contains only
+numerical entries,
+but when the matrix contains symbolic entries,
+the approach is less satisfactory,
+as we shall illustrate in the next paragraph.
+A better way of treating row reduction in the presence of
+symbolic
+quantities is to use
+the row-echelon decomposition as defined
+in this paper.
+Even in the purely numerical case,
+there are benefits in using the new decomposition.
+We shall see, for example, that $LU$ decomposition
+becomes
+simply a
+special case of row-echelon decomposition, meaning that
+a single
+computational procedure now covers both topics.
+It remains the symbolic context, however,
+which benefits most from
+the decomposition, especially when the
+programming of row reduction
+is considered.
+
+The shortcomings of the usual row reduction procedure are
+illustrated
+by the following problem, adapted from the widely used
+textbook by
+Noble and Daniel (1988, p 153).
+The matrix below is the augmented matrix for some system
+of
+equations. Find the values of the parameter $x$ for which
+the
+system
+has no, one, and infinitely many solutions.
+$$ A(x) = \pmatrix{ 1 & -2     & 3         & \cos x  \cr
+                    2 & \sin x & 6         & 6\cos x \cr
+                   -1 & 3      & \tan x -3 & \sin x  \cr }\ .
+\eqno(1)$$
+
+During the row reduction, we divide by
+pivots
+$4+\sin x$ and $\tan x$, both of which could equal zero
+and thus define special cases.
+Putting these cases
+to one side, we obtain the general row-echelon form of
+$A(x)$
+as
+$$ R(x)= \pmatrix{ 1 & 0 & 0 & -(\sin 2x+3\cos^2 x)/(
+4+\sin
+x) \cr
+                   0 & 1 & 0 & 4\cos x/( 4+\sin x) \cr
+                   0 & 0 & 1 & \cos x + \cos^2 x/( 4+\sin x)
+\cr }\ .
+\eqno(2)$$
+
+We must now go back to (1) and calculate the special cases.
+For our illustrative purposes, we need only consider one root
+of $\tan x = 0$, namely $x=0$, and of $\sin x = -4$, namely
+$x = -\pi/2 + i \ln(\sqrt{15} + 4)$.
+These special cases then give the
+row-echelon forms
+$$ R(0)= \pmatrix{ 1 & 0 & 3 & 3 \cr
+                   0 & 1 & 0 & 1 \cr
+                   0 & 0 & 0 & 0 \cr }\
+\eqno(3)$$
+and
+
+$$ R(-\pi/2 + i \ln(\sqrt{15}+4)) =
+                  \pmatrix{ 1 & 0 & 3 + 8i/\sqrt{15} & 0 \cr
+                            0 & 1 & 4i/\sqrt{15} & 0 \cr
+                            0 & 0 &  0 & 1 \cr }\ .
+\eqno(4)$$
+>From (2)-(4) the solution to the original problem is clear.
+
+The important point to notice in this example problem is the
+fact
+that the special cases are only apparent
+while the row reductions are being carried out.
+Increasingly, however, people no longer do the row
+reduction
+themselves, because it can be done automatically by
+computer algebra systems such as Derive, Maple and
+Mathematica.
+When this is the case,
+the only matrices that the user of an algebra system sees are
+(1) and (2),
+and all of the intermediate manipulations are lost.
+One can expect that the special case
+$\sin x+4=0$ would be noticed by most users,
+because in that case the entries in the
+last column are undefined (of course the only $x$ for
+which this is true are complex, and thus may be of no
+interest).
+There is nothing, however, in the general result
+(2) that gives any hint that $\tan x=0$
+is a special case and that the general result (2) must then
+be
+replaced by (3).
+Clearly some information has been lost during the
+transformation of (1) into (2).
+It is for all cases like this that we wish to
+devise a better way of proceeding.
+The immediate question to ask is whether
+the difficulty lies in the area of linear algebra and the
+definition of
+row-echelon form,
+or whether it lies in the area of computer algebra programs
+and
+their implementation. We shall show that each area
+contributes to the
+difficulty.
+
+Consider the problem above from the perspective of the
+designer of a
+computer algebra system.  How are the special cases going
+to
+be handled?
+Three possibilities present themselves.
+First, we can return the most general
+result, namely expression (2), and ignore the special cases.
+Most systems at present follow this approach.
+A second
+possibility is to stop the computation whenever division by a
+quantity
+containing an unknown is required and ask the proposer of
+the
+problem
+whether the calculation should proceed and under what
+assumptions.
+Macsyma is an example of a system that
+often follows this philosophy.
+Thirdly we could attempt to detect all special
+cases and return all of the correct possibilities,
+as was expected of the student in the exercise above.
+Mathematica has a routine called {\it Reduce} which
+implements this last approach,
+although in the context of a set of equations rather
+than matrices.
+Each of these possibilities has drawbacks. The first can lead
+to incorrect results, the second can be inconvenient, and the
+third can lead
+to voluminous output.
+
+
+The idea of information loss, touched on above, is not
+confined to our
+problem of row-echelon form, and is important in other
+aspects of
+computer-algebra systems.
+We can illustrate the wider issue with examples far simpler
+than our matrix example.
+Consider solving the equation $kx = 1$ for $x$.  All
+computer algebra systems (except Mathematica using its
+Reduce
+command,
+and Theorist) return $x = 1/k$ ,
+which is true only when $k$ is not 0.
+This, however, might be counted acceptable because the
+failure is
+visible (i.e.  easily noticed) in the special case $k=0$.
+Now consider solving
+the equation $kx = k$.
+All systems, with the same exceptions, give only the
+solution $x = 1$.
+The fact that there was a division by $k$ is no longer
+evident
+from the general solution, and thus a special case has been
+lost from view.
+Row reduction is essentially similar to the last case,
+because it is possible
+to lose any visible reminder of the fact that divisions were
+made by
+quantities that could be zero.
+
+We now must examine how the definition of row-echelon
+form
+contributes to
+the difficulties in its automatic implementation.
+We note, first, that row reduction is presented as a
+transformation of one matrix into another,
+in contrast to the other important constructs of modern
+linear
+algebra which are decompositions or factorizations.
+Thus it is only by writing out the
+intermediate working that we can show the divisors used.
+It is the normalization, however, which causes the central
+difficulty.
+A key property of row-echelon form is the fact that it is
+unique
+--- many proofs in linear algebra rely on
+this fact --- and to obtain uniqueness,
+we must normalize the leading term in
+each row to 1, thus forcing the division that is the point of
+discussion.
+One way to tackle the problem would be to change the
+definition of
+row-echelon form to remove the need to normalize to 1, and
+this leads, for example, to the
+Hermite normal form
+for matrices of integers or univariate polynomials
+(see e.g. Newman, 1972).
+However,
+the Hermite normal form
+is not
+defined for the general algebraic objects we wish to
+consider, such as our example above.
+In any event, the same difficulty of `losing' a division by a
+parameter can be constructed for this normal form
+by considering polynomials with parameters in the coefficients.
+
+By defining
+the row-echelon decomposition
+we can resolve the difficulties
+described above, without requiring changes
+either in the definitions of linear algebra or
+in computer-algebra systems.
+We use a matrix decomposition because it is an established
+idea
+in linear algebra and offers many advantages over a
+transformation.
+Decompositions are written as equations,
+in which the given matrix is written
+as a product of matrices with special properties.
+The key advantage of this
+for our purpose is that if we express row reduction as an
+equation, the
+divisors must appear somewhere in that equation, and that
+means that a
+computer system does not have to watch during the
+reduction
+to
+identify special cases for us.
+The row-echelon decomposition thus
+preserves all information about the original
+matrix, and moreover
+presents it in a convenient form for the investigation of
+special cases.
+
+\section{ 2. The Row Echelon Decomposition}
+
+    The existence of a row-echelon decomposition is proved
+in
+Theorem 1,
+and the continuity of the decomposition is examined in
+Theorem 2.
+
+\theorem{ Theorem 1:   }
+    If $A$ is an $m\times n$ matrix over $C$,
+    there exists a permutation matrix $P$,
+    a unit lower triangular matrix $L$,
+    and a {\it nonsingular} upper triangular matrix $U$ such
+that
+$$              A = PLUR $$
+    where $R$ is the (unique) row-echelon form of $A$.
+
+\proof{ Proof: } Noble and Daniel (1988) prove that there
+exists a
+    nonsingular matrix $F$ such that
+$$                             A = FR\ .$$
+      Apply ordinary LU decomposition to $F$ (Golub and
+Van
+Loan 1987).
+      Clearly,
+$$                              F = PLU \ ,$$
+      and $U$ is nonsingular.
+
+This theorem is straightforward, but before proceeding to
+theorem 2, we
+remark that LU decomposition is subsumed by this
+decomposition,
+since a non-singular (square) matrix has the unit
+matrix as a row-echelon form, and in
+that case the decomposition is just LU decomposition.
+It is also worth noting
+that the calculation of a row-echelon decomposition requires
+no more
+computation than row-echelon reduction itself; all that is
+required is that
+the steps in the calculation be remembered.
+
+Our main theorem is based on the continuity of the row-%
+echelon form.
+To motivate it, we return to the example problem and
+examine
+the row-echelon forms (2)---(4).
+If we take any point $x=a$ which is removed from the
+special
+cases,
+we clearly have
+$$ \lim_{x\to a} R(x) = R(a)\ .$$
+If, however, $a=0$ we find
+$$ \lim_{x\to 0} R(x) =
+        \pmatrix{ 1 & 0 & 0 & -3/4 \cr
+                   0 & 1 & 0 & 1 \cr
+                   0 & 0 & 1 & 5/4 \cr }\ ,$$
+which clearly does not equal $R(0)$. Thus the row-echelon
+form is
+discontinuous at this special case. Moreover, this is the
+essential
+feature we are looking for. Because the leading elements of
+each row
+have been normalized to 1, any change in the qualitative
+nature of
+the system, such as its rank, will be equivalent to a
+discontinuity.
+Finally, we notice that the original matrix is continuous at
+$x=0$.
+We thus need a theorem characterizing when the row-%
+echelon
+form of a
+matrix is discontinuous, even though the matrix itself is
+continuous.
+
+{\bf Definition.} A family of matrices $A(x)$ is
+continuous at $x=a$ if
+for all $\e > 0$ there exists $\delta > 0$ such that $|| x - a ||_2
+< \delta$ implies
+$|| A(x) - A(a) ||_2 < \e$.    Note that the 2-norm is used for
+explicitness, both
+for the $k$-dimensional parameter space and for the space of
+matrices.
+
+\theorem{ Theorem 2. }
+Let $A(x)$ be a matrix depending upon one or more
+variables
+or
+parameters $x$. Let $A$ be continuous at a point $x=a$.
+If $A(x)$ has a row-echelon decomposition in a
+neighbourhood
+of $x=a$
+$$ A(x) = P L(x) U(x) R(x) $$
+with $\det U(a) \ne 0$, then $R$ is continuous at $a$.
+
+{\bf Corollary 1:} The only values of $x$ at which $R(x)$ can be
+discontinuous
+are those for which $\det U(x) =0$.
+
+Remark:  The statement of the theorem assumes that
+we may find a single permutation matrix $P$ that will work
+throughout the neighbourhood of $x=a$.
+
+Before proving the theorem, we illustrate some of its
+practical
+consequences.
+
+EXAMPLE 1.  Parameterized matrices arise naturally in
+eigenvalue problems, such as the following.
+The example is chosen to illustrate that,
+even if an individual diagonal element of $U$ is zero, it
+is only when $\det U = 0$ that discontinuous changes in the
+row echelon form may occur.
+Consider
+$$ B=\pmatrix{ 2 & 0 & 0 \cr
+               2 & 3 & 1 \cr
+              -4 &-2 & 0 \cr } $$
+To find its eigenvalues and eigenvectors, we examine the
+row-echelon decomposition of $A(\lambda) = B - \lambda
+I$.  We have
+$$ A(\lambda) = I
+        \pmatrix{ 1 & 0 & 0 \cr
+                  2/(2-\lambda) & 1 & 0 \cr
+                 4/(\lambda-2) &2/(\lambda-3) & 1 \cr }
+        \pmatrix{ 2-\lambda & 0 & 0 \cr
+                  0 & 3-\lambda & 1 \cr
+                  0 & 0 & (\lambda^2-3\lambda+2)/( 3-
+\lambda) \cr } I. $$
+In the case $\lambda = 2$, the first diagonal element of $U$
+is zero, and when $\lambda = 3$ the second diagonal
+element is zero.  However, to find eigenvalues, we must test
+$\det A(\lambda) = \det U = (1-\lambda)(2-\lambda)^2$.
+Thus $\lambda = 3$ is not an eigenvalue and not a case in
+which the row-echelon form changes; instead, when
+$\lambda = 3$, a row exchange could be introduced when
+calculating the decomposition to obtain the same row-%
+echelon form as above, but with non-zero diagonal entries in
+$U$.
+For each distinct eigenvalue we must re-factorize.
+%, though we
+% note that some computer algebra systems allow a single
+% factorization to be done with a representative distinct
+% eigenvalue.
+Further, the row echelon form allows immediate calculation
+of the desired eigenvectors, because  $(A - \lambda I)x = 0$ if and
+only if $R x = 0$, since $P$, $L$, and $U$ are
+nonsingular.
+For $\lambda = 2$ the row-echelon form of $A(\lambda)$ is
+$$
+R(2) =         \pmatrix{ 1 & 1/2 & 1/2 \cr
+                  0 & 0 & 0 \cr
+                  0 & 0 & 0 \cr }  $$
+showing that there are two linearly independent eigenvectors
+for this eigenvalue.
+The case $\lambda = 1$ is treated similarly.
+This example was constructed using the method of Ortega
+(1985).
+
+EXAMPLE 2.  This example shows that even when $\det U
+= 0$ the row-echelon form might be continuous.
+Consider
+$$ A(a,b,c) = \pmatrix{ 1 & a\cr
+                        1 & b\cr
+                        1 & c\cr }
+            = I
+        \pmatrix{ 1 &       0        & 0 \cr
+                  1 &       1        & 0 \cr
+                  1 & (a-c)/(a-b) & 1 \cr }
+        \pmatrix{ 1 & a & 0 \cr
+                  0 & b-a & 0 \cr
+                  0 & 0   & 1 \cr }
+        \pmatrix{ 1 & 0 \cr
+                  0 & 1 \cr
+                  0 & 0 \cr } $$
+Clearly $\det U = 0$ when $b = a$.
+When, however, we recalculate the decomposition, we find
+$$ A(a,a,c) = \pmatrix{ 1 & 0 & 0 \cr
+                        0 & 0 & 1 \cr
+                        0 & 1 & 0 \cr }
+        \pmatrix{ 1 & 0 & 0 \cr
+                  1 & 1 & 0 \cr
+                  1 & 0 & 1 \cr }
+        \pmatrix{ 1 & a & 0 \cr
+                  0 & c-a & 0 \cr
+                  0 & 0   & 1 \cr }
+        \pmatrix{ 1 & 0 \cr
+                  0 & 1 \cr
+                  0 & 0 \cr }. $$
+The row-echelon form is unchanged {\sl unless also} $c = a$,
+in which case we get
+
+$$ A(a,a,a)
+            = I
+        \pmatrix{ 1 & 0 & 0 \cr
+                  1 & 1 & 0 \cr
+                  1 & 0 & 1 \cr }
+        \pmatrix{ 1 & 0 & 0 \cr
+                  0 & 1 & 0 \cr
+                  0 & 0 & 1 \cr }
+        \pmatrix{ 1 & a \cr
+                  0 & 0 \cr
+                  0 & 0 \cr }. $$
+This example shows that our theorem is as strong as
+possible, in that parameter values rendering $U$ singular
+can only be said to ``need further investigation".
+
+
+
+PROOF of Theorem 2.
+Since $\det U(a) \ne 0$, $\det U(x) \ne 0$ in a neighbourhood
+of $x=a$.
+Thus if we define $F(x) = P L(x) U(x)$, then $F(x)$ is
+nonsingular in this neighbourhood, and $F^{-1}(x)  = U^{-
+1}(x) L^{-1}(x) P^T$.
+We must prove that $R(x) = F^{-1}(x)A(x)$ is continuous
+at $x=a$.
+Since $A(x)$ is continuous and the product of continuous
+matrices is continuous, this amounts to showing that $L^{-
+1}(x)$ and $U^{-1}(x)$ are continuous at $x=a$.
+
+Consider the construction of $L(x)$ and $U(x)$.
+$L(x)$ is formed as a multiple of the elementary matrices:
+
+$$
+\eqalign{
+L(x) &= \pmatrix { 1    &        &        &        &   \cr
+           l_{21} &   1    &        &        &   \cr
+           l_{31} & l_{32} &   1    &        &   \cr
+           \vdots & \vdots & \vdots & \ddots &   \cr
+           l_{m1} & l_{m2} & l_{m3} & \ldots & 1 \cr} \cr
+&= \pmatrix { 1    &        &        &        &   \cr
+           l_{21} &   1    &        &        &   \cr
+           l_{31} & 0 &   1    &        &   \cr
+           \vdots & \vdots & \vdots & \ddots &   \cr
+           l_{m1} & 0 & 0 & \ldots & 1 \cr}
+\pmatrix { 1    &        &        &        &   \cr
+           0 &   1    &        &        &   \cr
+           0 & l_{32} &   1    &        &   \cr
+           \vdots & \vdots & \vdots & \ddots &   \cr
+           0 & l_{m2} & 0 & \ldots & 1 \cr} \cdots
+\pmatrix { 1    &        &        &        &   \cr
+           0 &   1    &        &        &   \cr
+           0 & 0 &   \ddots    &        &   \cr
+           \vdots & \vdots & \vdots & 1 &   \cr
+           0 & 0 & \ldots & l_{m,m-1} & 1 \cr} \cr
+}
+$$
+where the entries in each column of $L(x)$ are seen to be
+combinations of the original entries of $A(x)$, and the only
+divisions that have taken place are by the pivots --- that is,
+by the diagonal elements of $U(x)$.
+Since $\det U(x) \ne 0$ in this neighbourhood, it is possible
+to choose $P$ (independently of $x$) so that these pivots are
+bounded away from zero in this neighbourhood.
+Since the entries of $A(x)$ are continuous is $x$ at $x=a$, it
+is clear that the combinations of these elements giving the
+entries of $L$ are also continuous in $x$ at $x=a$.
+Further, since $L^{-1}(x)$ is the product of the $m-1$ factors
+$$
+\pmatrix { 1    &        &        &        &   \cr
+           0 &   1    &        &        &   \cr
+           0 & 0 &   \ddots    &        &   \cr
+           \vdots & \vdots & \vdots & 1 &   \cr
+           0 & 0 & \ldots & -l_{m,m-1} & 1 \cr} \cdots
+\pmatrix { 1    &        &        &        &   \cr
+           0 &   1    &        &        &   \cr
+           0 & -l_{32} &   1    &        &   \cr
+           \vdots & \vdots & \vdots & \ddots &   \cr
+           0 & -l_{m2} & 0 & \ldots & 1 \cr}
+\pmatrix { 1       &        &        &         &   \cr
+           -l_{21} &   1    &        &         &   \cr
+           -l_{31} &   0    & 1      &         &   \cr
+           \vdots  & \vdots & \vdots & \ddots  &   \cr
+           -l_{m1} &   0    & 0      & \ldots  & 1 \cr}
+$$
+it is clear that $L^{-1}(x)$ is also continuous in $x$ at
+$x=a$.
+
+A similar expression of $U(x)$ as a multiple of elementary
+matrices and the consequent expression of $U^{-1}(x)$
+shows that since the pivots are bounded away from zero,
+then $U^{-1}(x)$ is continuous in $x$ near $x=a$.
+This proves the theorem.
+
+
+{\bf Corollary 2:} By a homotopy argument, the elements of
+the row-echelon form which are independent of the
+parameters (in particular the leading zeros and ones in each
+row) cannot change except at a zero of $\det U$.
+That is, the parameter-independent elements of $R$ must be
+the same over the entire parameter space, except possibly at
+the zeros of $\det U$.
+
+\section{3. Conclusions}
+It is a simple exercise to write a program in Maple (or, say,
+Macsyma or Mathematica or Reduce) that computes the row
+echelon decomposition of an arbitrary matrix $A$.
+We have done so
+using the computer algebra system Maple (Char et. al.
+1988), and our program is available in the Maple share library.
+We found
+it convenient and reasonably efficient to use Maple's basic
+library routines to construct $P$, $L$, and $U$ by
+sequential matrix multiplication of elementary matrices.  This
+allows us to reference our computer program for any
+missing details in the proof of Theorem 2, as well as allowing the
+possibility of greater efficiency in a vector machine
+environment.
+The program by default returns both the correct row echelon form
+for the general case and $\det U$.
+This allows the user (at least in principle) to identify the values
+of the parameters that give exceptional row echelon forms,
+and the program can be called again with these special values
+of the parameters.
+
+It is interesting to note that this idea of a row echelon
+decomposition may be useful numerically, as well, if we
+make the usual shift to looking at the condition number of
+$U$ instead of the determinant.
+
+We remark that this decomposition can be used to solve all
+the major computational problems encountered in a first
+linear algebra course, such as solution of linear equations,
+LU decomposition, positive definiteness of quadratic forms,
+Gram-Schmidt orthogonalization (see Pursell and Trimble,
+1991), and eigenvalues.
+This unity may be a pedagogical asset, especially if the LU
+decomposition is going to be taught anyway.
+Further, since elementary matrices were used in the program and not
+just in the proof, this approach allows elementary matrices to play a
+more central role in the subject.
+
+Finally, we remark that this decomposition is not restricted
+to the complex-number field, as the proof can easily be
+extended to more general domains.
+In particular, the Hermite Normal Form may be computed
+via a similar decomposition using fraction-free Gaussian
+elimination, allowing the recursive extension of the Hermite
+Normal Form to the multivariate polynomial case without
+information loss.
+
+\section{References}
+B. W. Char, K. O. Geddes, G. H. Gonnet, M. B.
+Monagan, and S. M. Watt, {\sl The
+Maple Reference Manual}, 5th ed. (WATCOM, Waterloo,
+Canada, 1988).
+
+Gene H. Golub and Charles F. Van Loan, {\sl Matrix Computations},
+(Johns Hopkins, Baltimore, 1983).
+
+Morris Newman, {\sl Integral Matrices},  (Academic Press, New York
+and London,  1972),  p 15
+
+Ben Noble and James W. Daniel, {\sl Applied Linear
+Algebra}, 3rd ed. (Prentice-Hall,
+Englewood Cliffs, New Jersey, 1988).
+
+J. M. Ortega, Letters to the Editor, American Mathematical
+Monthly {\bf 92} 1985 p. 526.
+
+Lyle Pursell and S. Y. Trimble, ``Gram-Schmidt
+Orthogonalization by Gauss Elimination", American Mathematical
+Monthly {\bf 98} no. 6, 1991, pp 544--549.
+
+\bye

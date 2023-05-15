@@ -1,0 +1,121 @@
+\documentclass[9pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=15mm,
+    right=15mm,
+    top=20mm,
+    bottom=20mm,
+}
+\usepackage{multicol}
+\usepackage[font=small,labelfont=bf]{caption}
+\setlength{\columnsep}{0.25cm}
+\usepackage[inline]{enumitem}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{mathtools} 
+\setlength{\parindent}{0em}
+\setlength{\parsep}{0em}
+\usepackage{tikz}
+\setlength{\parskip}{0em}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usepackage[american,cuteinductors]{circuitikz}
+\usetikzlibrary{shapes,arrows,circuits,calc,babel}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\def\mf{\ensuremath\mathbf}
+\def\mb{\ensuremath\mathbb}
+\def\mc{\ensuremath\mathcal}
+\def\lp{\ensuremath\left(}
+\def\rp{\ensuremath\right)}
+\def\lv{\ensuremath\left\lvert}
+\def\rv{\ensuremath\right\rvert}
+\def\lV{\ensuremath\left\lVert}
+\def\rV{\ensuremath\right\rVert}
+\def\lc{\ensuremath\left\{}
+\def\rc{\ensuremath\right\}}
+\def\ls{\ensuremath\left[}
+\def\rs{\ensuremath\right]}
+\def\bmx{\ensuremath\begin{bmatrix*}[r]}
+\def\emx{\ensuremath\end{bmatrix*}}
+\def\bmxc{\ensuremath\begin{bmatrix*}[c]}
+\def\emxc{\ensuremath\end{bmatrix*}}
+% \def\t{\lp t\rp}
+% \def\k{\ls k\rs}
+
+\newcommand{\demoex}[2]{\onslide<#1->\begin{color}{black!60} #2 \end{color}}
+\newcommand{\demoexc}[3]{\onslide<#1->\begin{color}{#2} #3 \end{color}}
+\newcommand{\anim}[3]{\onslide<#1->{\begin{color}{#2!60} #3 \end{color}}}
+\newcommand{\ct}[1]{\lp #1\rp}
+\newcommand{\dt}[1]{\ls #1\rs}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{center}
+    \begin{Large}
+        \textbf{Introduction to DSP: Mathematical Preliminaries - Assignment}
+    \end{Large}
+\end{center}
+\vspace{0.2cm}
+
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item  Consider a complex number, $z = x + jy$. We know that this complex number can also be written as $z = {re}^{j\theta}$, which is the called the Euler representation of the complex number. Find the Euler representation for the following complex numbers:
+        \begin{enumerate}
+            \item $z = -1 - 1j$
+            \item $z = - 100j$
+            \item $z = 10\cos(\frac{\pi}{4}) + j10\sin(\frac{\pi}{4})$
+        \end{enumerate}
+
+        Plot these complex number in the complex plane.
+
+        \item The previous two complex numbers are fixed complex numbers. Let us now consider a complex number that changes with time $t \in \mathbb{R}$, and we write this complex numbers as $z(t)$ to indicate that it is a function of time $t$. $z(t)$ can be thought of as a mathematical function, that maps from the set of real number $(\mathbb{R})$ (time) to the set of complex numbers $(\mathbb{C})$. Find the Euler representation of the following time-varying complex numbers. Note that the $r$ and $\theta$ will be time-varying as well.
+        \begin{enumerate}
+            \item $z(t) = 1 + t + j2t$
+            \item $z(t) = \cos(\pi t) + j\sin(\pi t)$
+            \item $z(t) = \cos(\pi t) + j2\sin(\pi t)$
+            \item $z(t) = t\cos(\pi t) + jt\sin(\pi t)$
+        \end{enumerate}
+
+        \item Plot the trajectory of the complex number $z = t\,e^{j2\pi t}$ for time $0 \leq t \leq 5$.
+
+        \item For each complex number $z = x + jy$, we can define a complex conjugate representd by $\overline{z}$, which is defined as $\overline{z} = x -jy$, i.e the sign of the imaginary component is changed, while the real component remains unchanged. For the complex number $z = 3 + 4j$, plot the $z$ and $\overline{z}$ on the complex plane.
+
+        \item If a complex number $z = re^{j\theta}$, what is the correponding Euler representation for its complex conjugate $\overline{z}$.
+
+        \item For any complex number $z = x + jy$, what can you say about the outcomes of the following operations:
+        \begin{enumerate}
+            \item $z + \overline{z}$
+            \item $z - \overline{z}$
+            \item $j(z - \overline{z})$
+            \item $z\overline{z}$
+        \end{enumerate}
+
+        \item Consider two complex numbers $z_1 = 1 - i$ and $z_2 = 2 + i$. Using the complex plane, explain geometrically what happens we add the two complex numbers $\left(z_1 + z_2\right)$, and multipy the two complex numbers $\left(z_1z_2\right)$.
+
+        \item  Write down the domain and range of the following functions:
+        \begin{enumerate}
+            \item $y = \log\left(x\right)$
+            \item $y = \sqrt{x - 5}$
+            \item $y = \sin\left(x\right)$
+        \end{enumerate}
+    \end{enumerate}
+    \vfill
+\end{multicols}
+
+\end{document}

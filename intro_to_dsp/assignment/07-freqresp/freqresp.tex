@@ -1,0 +1,111 @@
+\documentclass[9pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=15mm,
+    right=15mm,
+    top=20mm,
+    bottom=20mm,
+}
+\usepackage{multicol}
+\usepackage[font=small,labelfont=bf]{caption}
+\setlength{\columnsep}{0.25cm}
+\usepackage[inline]{enumitem}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{mathtools} 
+\setlength{\parindent}{0em}
+\setlength{\parsep}{0em}
+\usepackage{tikz}
+\setlength{\parskip}{0em}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usepackage[american,cuteinductors]{circuitikz}
+\usetikzlibrary{shapes,arrows,circuits,calc,babel}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\def\mf{\ensuremath\mathbf}
+\def\mb{\ensuremath\mathbb}
+\def\mc{\ensuremath\mathcal}
+\def\lp{\ensuremath\left(}
+\def\rp{\ensuremath\right)}
+\def\lv{\ensuremath\left\lvert}
+\def\rv{\ensuremath\right\rvert}
+\def\lV{\ensuremath\left\lVert}
+\def\rV{\ensuremath\right\rVert}
+\def\lc{\ensuremath\left\{}
+\def\rc{\ensuremath\right\}}
+\def\ls{\ensuremath\left[}
+\def\rs{\ensuremath\right]}
+\def\bmx{\ensuremath\begin{bmatrix*}[r]}
+\def\emx{\ensuremath\end{bmatrix*}}
+\def\bmxc{\ensuremath\begin{bmatrix*}[c]}
+\def\emxc{\ensuremath\end{bmatrix*}}
+% \def\t{\lp t\rp}
+% \def\k{\ls k\rs}
+
+\newcommand{\demoex}[2]{\onslide<#1->\begin{color}{black!60} #2 \end{color}}
+\newcommand{\demoexc}[3]{\onslide<#1->\begin{color}{#2} #3 \end{color}}
+\newcommand{\anim}[3]{\onslide<#1->{\begin{color}{#2!60} #3 \end{color}}}
+\newcommand{\ct}[1]{\lp #1\rp}
+\newcommand{\dt}[1]{\ls #1\rs}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{center}
+    \begin{Large}
+        \textbf{Introduction to DSP: Systems - Assignment: Frequency Anaysis of LTI Systems}
+    \end{Large}
+\end{center}
+\vspace{0.2cm}
+
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item Determine the frequency response of the LTI system with impulse response, $h[n] = \lp \frac{1}{2} \rp^n 1[n]$. Plot the magnitude and phase response by writing a python program. Determine the magnitude and phase spectra of the following inputs and their corresponding outputs for the given LTI system.
+        \begin{enumerate}
+            \item $x[n] = \cos \frac{2 \pi n}{10}, -\infty < n < \infty$
+            \item $x[n] = \frac{1}{2} \lp \delta[n] + \delta[n-1] \rp$
+        \end{enumerate}
+
+        \item Consider the following LTI system,
+        \[ y[n] = x[n] + x[n-3] \]
+
+        Compute the output of this system for the following input, $x[n] = \cos \frac{\pi n}{2} + \cos \frac{\pi n}{4}$.
+
+        Can you explain the results in terms of the magnitude and phase responses the LTI system?
+
+        \item A frequency components in the output of a LTI system can only be the ones that are at its input. An LTI system does not generate new frequency components, whereas a non-linear system can. For the input $x[n] = \cos \lp \frac{\pi}{4}n \rp$, find the frequency components of the output for the following systems,
+        \begin{enumerate}
+             \item $y[n] = x[n] + x[n-1]$
+             \item $y[n] = x[2n]$
+             \item $y[n] = x^2[n]$
+             \item $y[n] = \cos(\Omega n) \cdot x[n]$
+             \item $y[n] = x^3[n]$
+         \end{enumerate} 
+
+        \item Consider the following LTI system,
+        \[ y[n] = -a \cdot y[n-1] + x[n] \]
+        Find the frequency response $H\lp \Omega \rp$ of this system. Find the value of $a$ such that $\vert H\lp 0.25\pi \rp\vert = \frac{1}{\sqrt {2}} \lvert H \lp 0 \rp \vert$.
+
+        \item Consdier the following LTI system,
+        \[ y[n] = a\cdot x[n] + b \cdot x[n-1] + c \cdot x[n-2] \]
+        Let the frequency response of this system be $H\lp \Omega \rp$. Find the values of $a, b, c$ such that $H\lp \frac{\pi}{3} \rp = 0$.
+    \end{enumerate}
+    \vfill
+\end{multicols}
+
+\end{document}

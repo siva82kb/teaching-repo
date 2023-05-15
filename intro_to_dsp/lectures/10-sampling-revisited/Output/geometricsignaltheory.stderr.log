@@ -1,0 +1,4 @@
+Latexmk: Run number 1 of rule 'pdflatex'
+Latexmk: Summary of warnings from last run of (pdf)latex:
+  =====Latex reported missing or unavailable character(s).
+=====See log file for details.

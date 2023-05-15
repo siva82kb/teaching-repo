@@ -1,0 +1,307 @@
+\documentclass[fontsize=9pt]{scrbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}
+\usepackage{multicol}
+\setlength{\columnsep}{0.7cm}
+\usepackage[inline]{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+}
+\usepackage{afterpage}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+\renewcommand{\baselinestretch}{0.9}
+\raggedbottom
+
+\def\mf{\ensuremath\mathbf}
+\def\mb{\ensuremath\mathbb}
+\def\lp{\ensuremath\left(}
+\def\rp{\ensuremath\right)}
+\def\lv{\ensuremath\left\lvet}
+\def\rv{\ensuremath\right\rvert}
+\def\lV{\ensuremath\left\lVert}
+\def\rV{\ensuremath\right\rVert}
+\def\lc{\ensuremath\left\{}
+\def\rc{\ensuremath\right\}}
+\def\bmx{\ensuremath\begin{bmatrix*}[r]}
+\def\emx{\ensuremath\end{bmatrix*}}
+
+\newcommand{\demoex}[2]{\onslide<#1->\begin{color}{black!60} #2 \end{color}}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+
+\begin{multicols}{2}
+\section*{Linear Systems}
+\vspace{-0.25cm}
+\begin{footnotesize}
+Dept. of Bioengineering, CMC Vellore
+\end{footnotesize}
+
+\vspace{0.5cm}
+\textbf{Instructor}: Sivakumar Balasubramanian
+
+\textbf{TA}: Prem Kumar, Tanya Subash
+
+\textbf{Lecture timings}: Mon, Thur 7:30-9:00AM
+
+\textbf{Course Web-page}: Please refer to this page for the up-to-date lecture notes and assignments.\\
+\href{https://siva82kb.github.io/teaching/ls/ls.html}{https://siva82kb.github.io/teaching/ls/ls.html}
+
+\subsection*{What is the course about?}
+\begin{itemize}
+\item Introduction to linear systems theory, in particular state space representation and analysis, state feedback control and state estimation.
+\item First half of the course focuses on applied linear algebra, and the second half focuses on the theory of linear systems. 
+\end{itemize}
+
+\subsection*{What to expect from the course?}
+\begin{itemize}
+\item Important concepts in applied linear algebra
+\item Brief introduction to optimization
+\item State space representation and analysis of physical systems
+\item Design and analysis of linear state feedback controllers
+\item Design and analysis of linear state observers
+\end{itemize}
+
+\subsection*{Course Scoring and Grading}
+\subsubsection*{Course Activities}
+\begin{itemize}
+\item \textbf{Homework assignment} $15\%$\\
+\textit{\small Assignments will be provided to the student by the instructor and will be due one week after the assignments are provided. Late submissions will not be evaluated. Assignments will include both regular paper-and-pencil and programming problems. The student is free to use any programming language to solve the problems. You are encourged to work in groups to solves these problems, and learn from each other. But write down your own solutions and do not copy.}
+\item \textbf{Surprize Quiz} $25\%$\\
+\textit{\small These will be given throughout the duration of the course. They will be short 20-30 min open book, in-class quizes.}
+\item \textbf{Mid-term} $15\%$\\
+\textit{\small Take home exam, due the next day. This can include both paper-and-pencil and programming problems. Students are not allowed to discuss among themselves in solving these problems.}
+\item \textbf{Final} $45\%$\\
+\textit{\small Take home exam, due the two days after it is given. This can include both paper-and-pencil and programming problems. Students are not allowed to discuss among themselves in solving these problems.}
+\end{itemize}
+
+\subsubsection*{Grading policy:No relative grading}
+\begin{enumerate*}
+\item[\textbf{A+}]: {\small $90 \leq$ Score;}
+\item[\textbf{A}]: {\small $80 \leq$ Score $< 90$;}
+\item[\textbf{B}]: {\small $70 \leq$ Score $< 80$;}
+\item[\textbf{C}]: {\small $60 \leq$ Score $< 70$;}
+\item[\textbf{D}]: {\small $50 \leq$ Score $< 60$;}
+\item[\textbf{E}]: {\small $40 \leq$ Score $< 50$;}
+\item[\textbf{F}]: {\small Score $< 40$;}
+\end{enumerate*}
+
+\subsection*{Policy for academic dishonesty}
+There will be zero tolerance towards academic dishonesty, and anyone found carrying out such activities will receive an `\textbf{F}' grade in the course. Activities such as copying assignments, submitting some else's code, cheating on quizzes and exams etc. are considered academically dishonest behavior.
+
+
+\subsection*{References}
+\begin{enumerate}
+    \item G Strang, \textit{Introduction to linear algebra}. Wellesley, MA: Wellesley-Cambridge Press, 1993.
+    \item CD Meyer, \textit{Matrix analysis and applied linear algebra}. Siam; 2000 Jun 1.
+    \item S Boyd and L Vandenberghe, \textit{Introduction to Applied Linear Algebra – Vectors, Matrices, and Least Squares} . \href{https://web.stanford.edu/~boyd/vmls/}{Online book}
+\end{enumerate}
+
+
+\subsection*{Other Resources}
+\begin{enumerate}
+    \item Online course on \textit{Linear Algebra} by G Straing at MIT OCW. \href{https://goo.gl/VUy64k}{Course Link}
+    \item Online course on \textit{Linear Dynamical Systems} by S Boyd. \href{https://see.stanford.edu/Course/EE263}{Course Link}
+\end{enumerate}
+
+
+\section*{Course Content}
+\begin{enumerate}
+    \item Vectors
+    \item Matrices
+    \item Orthogonality
+    \item Matrix Inverses
+    \item Least squares methods
+    \item Eigenvectors and eigenvalues
+    \item Positive definiteness and matrix norm 
+    \item Singular Value Decomposition
+    \item Optimization - A brief introduction
+    \item Linear dynamical systems (LDS) - Transfer Function View
+    \item LDS - State Space View
+    \item Solution of LDS
+    \item Stability
+    \item Controllability
+    \item Observability
+    \item State feedback control
+    \item Linear observers
+\end{enumerate}
+\vfill\clearpage
+
+\subsection*{Course content details}
+\subsection*{Vectors}
+\begin{enumerate*}
+    \item Vectors;
+    \item Vector spaces;
+    \item Suspaces;
+    \item Linear independence;
+    \item Span and spanning sets;
+    \item Inner product;
+    \item Norm;
+    \item Angle between vectors;
+    \item Basis;
+    \item Dimension of a vector space;
+    \item Linear functions
+\end{enumerate*}
+
+\subsection*{Matrices}
+\begin{enumerate*}
+    \item Matrices;
+    \item Matrix Operations;
+    \item Matrix Multiplication;
+    \item Properties of Matrix Multipilication;
+    \item Geometry of Linear Equations;
+    \item Gaussian Elimination;
+    \item Gauss-Jordan Method;
+    \item Row Echelon Forms;
+    \item Homogenous systems;
+    \item Non-homogenous systems;
+    \item $\mf{LU}$ factorization;
+    \item Linear transformation;
+    \item Four fundamental subspace;
+    \item Matrix inverse
+\end{enumerate*}
+
+\subsection*{Orthogonality}
+\begin{enumerate*}
+    \item Orthogonality;
+    \item Orthogonal subspaces;
+    \item Relationship between the four fundamental subspaces;
+    \item Gram-Schmidt orthogonalization;
+    \item $\mf{QR}$ factorization;
+    \item Orthogonal projection
+\end{enumerate*}
+
+
+\subsection*{Matrix Inverses}
+\begin{enumerate*}
+    \item Representation of vectors in a basis;
+    \item Matrix Inverse;
+    \item Left Inverse;
+    \item Right Inverse;
+    \item Pseudo-inverse;
+    \item Inverses and $\mf{QR}$ factorization
+\end{enumerate*}
+
+\subsection*{Least squares methods}
+\begin{enumerate*}
+    \item Overdetermined System of linear equations
+    \item Least Squares Problem
+    \item Multi-Objective Least Squares
+    \item Constrained Least Squares
+\end{enumerate*}
+
+\subsection*{Eigenvectors and eigenvalues}
+\begin{enumerate*}
+    \item Linear transformation;
+    \item Representation of linear trasnformations in different basis;
+    \item Similarity transformation;
+    \item Complex vectors and matrices;
+    \item Eigenvectors and Eigenvalues;
+    \item Diagonalization of matrix $\mf{X}\mf{\Lambda}\mf{X}^{-1}$; 
+    \item Jordan form
+\end{enumerate*}
+
+\subsection*{Positive definiteness and matrix norm }
+\begin{enumerate*}
+    \item Positive definite matrices;
+    \item Matrix Norm -- Frobinius norm and Induced Norm
+\end{enumerate*}
+
+\subsection*{Singular Value Decomposition (SVD)}
+\begin{enumerate*}
+    \item Matrix equivalence;
+    \item SVD -- Diagonalizing any matrix;
+    \item Geometry of SVD
+\end{enumerate*}
+
+\subsection*{Optimization - A brief introduction}
+\begin{enumerate*}
+    \item Linear optimization
+    \item Non-linear optimization
+    \item Linear programming
+\end{enumerate*}
+
+\subsection*{Singular Value Decomposition (SVD)}
+\begin{enumerate*}
+    \item Matrix equivalence;
+    \item SVD -- Diagonalizing any matrix;
+    \item Geometry of SVD
+\end{enumerate*}
+
+\subsection*{Linear dynamical systems (LDS) - Transfer Function View}
+\begin{enumerate*}
+    \item Important signals;
+    \item Linear Time-Invariant (LTI) Systems;
+    \item Unilateral Laplace Transform;
+    \item Impulse response of continous-time LTI systems;
+    \item Convolution Integral;
+    \item Transfer function of continous-time LTI systems;
+    \item z-transform;
+    \item Impulse response of discrete-time LTI systems;
+    \item Convolution sum;
+    \item Transfer function of discrete-time LTI systems
+\end{enumerate*}
+
+\subsection*{LDS - State Space View}
+\begin{enumerate*}
+    \item States of a system
+    \item State space representation of linear systems
+    \item Block diagram representation of linear systems
+    \item State space representation of discrete-time linear systems
+    \item Block diagram representation of discrete-time linear systems
+    \item State space visualization
+\end{enumerate*}
+
+% \subsection*{Modelling physical systems}
+% \begin{enumerate*}
+% \end{enumerate*}
+
+\subsection*{Solution of LDS}
+\begin{enumerate*}
+    \item Zero-input solution for $\mf{x}(t)$
+    \item Cayley-Hamilton theorem
+    \item Laplace transform approach to zero-input response
+    \item $e^{t\mf{A}}$ and its properties
+    \item Modes of a system
+    \item Zero-state solution
+    \item Complete solution of a linear system.
+\end{enumerate*}
+
+\subsection*{Stability}
+\begin{enumerate*}
+    \item Internal stability
+    \item Lyapunov stability criteria
+    \item Input-Output stability
+\end{enumerate*}
+
+\subsection*{Controllability}
+% \begin{enumerate*}
+% \end{enumerate*}
+
+\subsection*{Observability}
+% \begin{enumerate*}
+% \end{enumerate*}
+
+\subsection*{State feedback control}
+% \begin{enumerate*}
+% \end{enumerate*}
+
+\subsection*{Linear observers}
+% \begin{enumerate*}
+% \end{enumerate*}
+
+\vfill\clearpage
+
+\end{multicols}
+\end{document}

@@ -1,0 +1,7 @@
+Latexmk: Run number 1 of rule 'pdflatex'
+Latexmk: Run number 2 of rule 'pdflatex'
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'D:/work/OneDrive/OneDrive - Christian Medical College/teaching/linear_systems/lectures/01-vectors/Output/vectors.log' for details
+D:\Programs\texlive\2020\bin\win32\runscript.tlu:915: command failed with exit code 12:
+perl.exe d:\Programs\texlive\2020\texmf-dist\scripts\latexmk\latexmk.pl -f -quiet -pdf -synctex=1 -jobname=vectors "-outdir=D:\work\OneDrive\OneDrive - Christian Medical College\teaching\linear_systems\lectures\01-vectors\Output" "D:\work\OneDrive\OneDrive - Christian Medical College\teaching\linear_systems\lectures\01-vectors\vectors.tex"

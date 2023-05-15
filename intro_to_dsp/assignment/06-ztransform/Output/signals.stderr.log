@@ -1,0 +1,6 @@
+Latexmk: Run number 1 of rule 'pdflatex'
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'D:/work/OneDrive/OneDrive - Christian Medical College/teaching/intro_to_dsp/assignment/02-signals/Output/signals.log' for details
+D:\Programs\texlive\2020\bin\win32\runscript.tlu:915: command failed with exit code 12:
+perl.exe d:\Programs\texlive\2020\texmf-dist\scripts\latexmk\latexmk.pl -f -quiet -pdf -synctex=1 -jobname=signals "-outdir=D:\work\OneDrive\OneDrive - Christian Medical College\teaching\intro_to_dsp\assignment\02-signals\Output" "D:\work\OneDrive\OneDrive - Christian Medical College\teaching\intro_to_dsp\assignment\02-signals\signals.tex"

@@ -1,0 +1,100 @@
+\documentclass[9pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=15mm,
+    right=15mm,
+    top=20mm,
+    bottom=20mm,
+}
+\usepackage{multicol}
+\usepackage[font=small,labelfont=bf]{caption}
+\setlength{\columnsep}{0.25cm}
+\usepackage[inline]{enumitem}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{mathtools} 
+\setlength{\parindent}{0em}
+\setlength{\parsep}{0em}
+\usepackage{tikz}
+\setlength{\parskip}{0em}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usepackage[american,cuteinductors]{circuitikz}
+\usetikzlibrary{shapes,arrows,circuits,calc,babel}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\def\mf{\ensuremath\mathbf}
+\def\mb{\ensuremath\mathbb}
+\def\mc{\ensuremath\mathcal}
+\def\lp{\ensuremath\left(}
+\def\rp{\ensuremath\right)}
+\def\lv{\ensuremath\left\lvert}
+\def\rv{\ensuremath\right\rvert}
+\def\lV{\ensuremath\left\lVert}
+\def\rV{\ensuremath\right\rVert}
+\def\lc{\ensuremath\left\{}
+\def\rc{\ensuremath\right\}}
+\def\ls{\ensuremath\left[}
+\def\rs{\ensuremath\right]}
+\def\bmx{\ensuremath\begin{bmatrix*}[r]}
+\def\emx{\ensuremath\end{bmatrix*}}
+\def\bmxc{\ensuremath\begin{bmatrix*}[c]}
+\def\emxc{\ensuremath\end{bmatrix*}}
+% \def\t{\lp t\rp}
+% \def\k{\ls k\rs}
+
+\newcommand{\demoex}[2]{\onslide<#1->\begin{color}{black!60} #2 \end{color}}
+\newcommand{\demoexc}[3]{\onslide<#1->\begin{color}{#2} #3 \end{color}}
+\newcommand{\anim}[3]{\onslide<#1->{\begin{color}{#2!60} #3 \end{color}}}
+\newcommand{\ct}[1]{\lp #1\rp}
+\newcommand{\dt}[1]{\ls #1\rs}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\begin{center}
+    \begin{Large}
+        \textbf{Introduction to DSP: Systems - Assignment: Fourier Representation of Signals}
+    \end{Large}
+\end{center}
+\vspace{0.2cm}
+
+\begin{multicols}{2}
+    \begin{enumerate}
+        \item Find the Fourier series or transform of the following continuous-time signals.
+        \begin{enumerate}
+            \item $x(t) = e^{-at} \cdot 1(t), \,\,\ a > 0$
+            \item $x(t) = e^{-a\vert t \vert}, \,\,\ a > 0$
+            \item $x(t) = \begin{cases} e^{-a t}, & t \geq 0 \\ -e^{a t}, & t < 0 \end{cases}, \,\,\ a > 0$
+        \end{enumerate}
+
+        \item Show that the inverse Fourier transform of $X(\omega) = \pi \lp \delta(\omega - \omega_0) + \delta(\omega + \omega_0)\rp$ is $\cos\lp \omega_0 t \rp$.
+
+        \item Show that when a time-domain signal $x(t)$ is real, then $\vert X(\omega) \vert$ is an even function of $\omega$ and $\arg X\lp \omega \rp$ is an odd function of $\omega$.
+
+        \item Show that the Fourier transform of a even function of time $x(t)$ is real, and that of a odd function of time is purely imaginary.
+
+        \item Find the DTFT of the following two signals, and plot their magnitude and phase responses:
+        \begin{enumerate}
+            \item $x[n] = \frac{1}{2} \lp \delta[n] + \delta[n-1] \rp$
+            \item $x[n] = \frac{1}{2} \lp \delta[n] - \delta[n-1] \rp$
+        \end{enumerate}
+    \end{enumerate}
+    \vfill
+\end{multicols}
+
+\end{document}
